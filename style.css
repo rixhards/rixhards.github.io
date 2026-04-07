@@ -1,0 +1,142 @@
+/* =========================================
+   1. VARIÁVEIS E RESET BÁSICO
+   ========================================= */
+:root {
+    /* Preparando o terreno para o Light/Dark mode no futuro */
+    --bg-color: #1a1a1a;
+    --text-color: #f5f5f5;
+    --border-color: #444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Garante que o body ocupe a tela toda */
+}
+
+/* Linhas tracejadas para simular seu wireframe */
+header, #tech-stack, #main-footer {
+    border-bottom: 1px dashed var(--border-color);
+    padding: 1.5rem 2rem;
+}
+
+#tech-stack {
+    border-bottom: none;
+    border-top: 1px dashed var(--border-color);
+    text-align: center;
+}
+
+/* =========================================
+   2. HEADER E NAVEGAÇÃO (FLEXBOX)
+   ========================================= */
+header nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* =========================================
+   3. LAYOUT PRINCIPAL (CSS GRID)
+   ========================================= */
+#main-layout {
+    display: grid;
+    /* Divide a tela: 1 fração pra esquerda, 2 frações pra direita */
+    grid-template-columns: 1fr 2.5fr; 
+    gap: 2rem;
+    padding: 2rem;
+    flex: 1; /* Faz o main ocupar o espaço restante entre header e footer */
+}
+
+/* =========================================
+   4. COLUNA ESQUERDA (SIDEBAR FIXA)
+   ========================================= */
+#profile-section {
+    position: sticky;
+    top: 2rem; /* Trava a barra lateral no topo ao rolar a página */
+    height: fit-content;
+    border-right: 1px dashed var(--border-color);
+    padding-right: 2rem;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.profile-actions button {
+    flex: 1; /* Faz os botões terem o mesmo tamanho */
+    padding: 0.5rem;
+}
+
+/* =========================================
+   5. COLUNA DIREITA E CARROSSÉIS (SCROLL SNAP)
+   ========================================= */
+#content-section {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    min-width: 0
+}
+
+.carousel-container {
+    display: flex;
+    overflow-x: auto; /* Habilita rolagem horizontal */
+    scroll-snap-type: x mandatory; /* Força o card a parar na posição certa */
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    margin-top: 1rem;
+    width: 100%; /* Garante que respeite o limite do pai */
+    scrollbar-width: none; /* Oculta scrollbar no Firefox */
+}
+
+/* Oculta scrollbar no Chrome/Safari/Edge */
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.card-projeto, .card-pesquisa {
+    scroll-snap-align: start; /* Ponto de parada do scroll */
+    min-width: 280px; /* Tamanho mínimo dos cards */
+    flex-shrink: 0; /* Impede que os cards sejam esmagados para caberem na tela */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+}
+
+/* =========================================
+   6. FOOTER INFERIOR
+   ========================================= */
+#main-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+}
+
+/* =========================================
+   7. MODAIS BÁSICOS
+   ========================================= */
+dialog {
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7); /* Fundo escuro atrás do modal */
+}
