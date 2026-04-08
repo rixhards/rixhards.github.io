@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Desenvolvedor</title>
+    <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+
+    <header>
+        <nav>
+            <a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/richardsros" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <button data-pt="Alternar Tema (Dark/Light)" data-en="Toggle Theme (Dark/Light)" id="theme-toggle"></button>
+            <button data-pt="Inglês" data-en="Português" id="lang-toggle"></button>
+        </nav>
+    </header>
+
+    <main id="main-layout">
+
+        <aside id="profile-section">
+            <img src="imgs/Coin.png" alt="Foto de Perfil" width="150">
+            <h1>Richard Fagundes Rodrigues</h1>
+            <h2 data-pt="Desenvolvedor iOS" data-en="iOS Developer"></h2>
+            <p data-pt="Breve resumo sobre mim..." data-en="Short summary about me..."></p>
+            
+            <div class="profile-actions">
+                <button data-pt="Saiba mais sobre meu currículo" data-en="Learn more about my resume" onclick="document.getElementById('modal-curriculo').showModal()"></button>
+                <button data-pt="Entre em contato" data-en="Contact me" onclick="document.getElementById('modal-contato').showModal()"></button>
+            </div>
+        </aside>
+
+        <section id="content-section">
+            
+            <article id="projetos">
+                <h3>Projetos</h3>
+                <div class="carousel-container">
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 1</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.8/5</span>
+                    </div>
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 2</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.9/5</span>
+                    </div>
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 2</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.9/5</span>
+                    </div>
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 2</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.9/5</span>
+                    </div>
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 2</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.9/5</span>
+                    </div>
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 2</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.9/5</span>
+                    </div>
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 2</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.9/5</span>
+                    </div>
+                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                        <h4>Nome do Projeto 2</h4>
+                        <p>Slogan rápido do projeto.</p>
+                        <span>App Store: 4.9/5</span>
+                    </div>
+                </div>
+            </article>
+
+            <article id="pesquisas">
+                <h3>Aprendizados / Pesquisas</h3>
+                <div class="carousel-container">
+                    <div class="card-pesquisa">
+                        <h4>Tema Estudado</h4>
+                        <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
+                    </div>
+                    <div class="card-pesquisa">
+                        <h4>Tema Estudado</h4>
+                        <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
+                    </div>
+                    <div class="card-pesquisa">
+                        <h4>Tema Estudado</h4>
+                        <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
+                    </div>
+                    <div class="card-pesquisa">
+                        <h4>Tema Estudado</h4>
+                        <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
+                    </div>
+                    <div class="card-pesquisa">
+                        <h4>Tema Estudado</h4>
+                        <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+    <footer id="tech-stack">
+        <p>HTML5 &bull; CSS3 &bull; JavaScript &bull; Git &bull; React &bull; Node.js</p>
+    </footer>
+
+    <footer id="main-footer">
+        <span>&copy; 2026 Seu Nome</span>
+        <button onclick="document.getElementById('modal-contato').showModal()">Contato</button>
+        <span>Criado com HTML, CSS e JS</span>
+    </footer>
+
+    <dialog id="modal-curriculo">
+        <button class="close-btn" onclick="this.closest('dialog').close()">X</button>
+        <h2>Meu Currículo</h2>
+        <p>Aqui entrarão as informações detalhadas do seu CV.</p>
+    </dialog>
+
+    <dialog id="modal-contato">
+        <button class="close-btn" onclick="this.closest('dialog').close()">X</button>
+        <h2>Entre em Contato</h2>
+        <p>Email: seu-email@dominio.com</p>
+        <ul>
+            <li><a href="#">Mensagem via LinkedIn</a></li>
+            <li><a href="#">Outra rede social</a></li>
+        </ul>
+    </dialog>
+
+    <script src="script.js" defer></script>
+
+    </body>
+</html>
