@@ -3,25 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio - Desenvolvedor</title>
+    <meta name="description" content="Portfólio de Richard Fagundes Rodrigues — Desenvolvedor iOS. Projetos, pesquisas e contato.">
+    <title>Richard Fagundes Rodrigues — Portfólio</title>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
-    </head>
+</head>
 <body>
 
-    <header>
+    <!-- ==============================
+         HEADER
+    =============================== -->
+    <header class="site-header">
         <nav>
-            <a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer" aria-label="Perfil no GitHub">
                 <i data-lucide="github"></i>
             </a>
-            <a href="https://linkedin.com/in/richardsros" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a href="https://linkedin.com/in/richardsros" target="_blank" rel="noopener noreferrer" aria-label="Perfil no LinkedIn">
                 <i data-lucide="linkedin"></i>
             </a>
 
-            <label class="theme-switch" aria-label="Alternar Tema">
+            <!-- Theme Toggle -->
+            <label class="theme-switch" aria-label="Alternar tema claro/escuro">
                 <input type="checkbox" id="theme-toggle">
                 <span class="slider">
                     <i data-lucide="moon" class="icon-moon"></i>
@@ -29,93 +40,74 @@
                 </span>
             </label>
 
+            <!-- Language Dropdown -->
             <div class="dropdown" id="lang-dropdown">
-                <button class="dropdown-btn" id="lang-toggle-btn">
+                <button class="dropdown-btn" id="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
                     <span class="flag" id="current-flag">🇧🇷</span>
                     <span id="current-lang-text">PT-BR</span>
                     <i data-lucide="chevron-down" class="chevron"></i>
                 </button>
-                <div class="dropdown-content">
-                    <button onclick="setLanguage('en')"><span class="flag">🇺🇸</span> EN-US</button>
-                    <button onclick="setLanguage('pt')"><span class="flag">🇧🇷</span> PT-BR</button>
+                <div class="dropdown-content" role="menu">
+                    <button role="menuitem" data-lang="en">
+                        <span class="flag">🇺🇸</span> EN-US
+                    </button>
+                    <button role="menuitem" data-lang="pt">
+                        <span class="flag">🇧🇷</span> PT-BR
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main id="main-layout">
+    <!-- ==============================
+         MAIN LAYOUT
+    =============================== -->
+    <main class="main-layout">
 
-        <aside id="profile-section">
-            <img src="imgs/Coin.png" alt="Foto de Perfil" width="150">
+        <!-- Sidebar — Perfil -->
+        <aside class="profile-section">
+            <img src="imgs/Coin.png" alt="Foto de perfil de Richard" width="150" height="150">
             <h1>Richard Fagundes Rodrigues</h1>
             <h2 data-pt="Desenvolvedor iOS" data-en="iOS Developer"></h2>
             <p data-pt="Breve resumo sobre mim..." data-en="Short summary about me..."></p>
-            
+
             <div class="profile-actions">
-                <button data-pt="Saiba mais sobre meu currículo" data-en="Learn more about my resume" onclick="document.getElementById('modal-curriculo').showModal()"></button>
-                <button data-pt="Entre em contato" data-en="Contact me" onclick="document.getElementById('modal-contato').showModal()"></button>
+                <button data-action="open-modal" data-target="modal-curriculo"
+                        data-pt="Currículo" data-en="Resume"></button>
+                <button data-action="open-modal" data-target="modal-contato"
+                        data-pt="Contato" data-en="Contact"></button>
             </div>
         </aside>
 
-        <section id="content-section">
-            
+        <!-- Conteúdo Principal -->
+        <section class="content-section">
+
+            <!-- Projetos -->
             <article id="projetos">
-                <h3>Projetos</h3>
+                <h3 data-pt="Projetos" data-en="Projects"></h3>
                 <div class="carousel-container">
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                    <div class="card-projeto">
                         <h4>Nome do Projeto 1</h4>
                         <p>Slogan rápido do projeto.</p>
                         <span>App Store: 4.8/5</span>
                     </div>
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
+                    <div class="card-projeto">
                         <h4>Nome do Projeto 2</h4>
                         <p>Slogan rápido do projeto.</p>
                         <span>App Store: 4.9/5</span>
                     </div>
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
-                        <h4>Nome do Projeto 2</h4>
+                    <div class="card-projeto">
+                        <h4>Nome do Projeto 3</h4>
                         <p>Slogan rápido do projeto.</p>
-                        <span>App Store: 4.9/5</span>
-                    </div>
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
-                        <h4>Nome do Projeto 2</h4>
-                        <p>Slogan rápido do projeto.</p>
-                        <span>App Store: 4.9/5</span>
-                    </div>
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
-                        <h4>Nome do Projeto 2</h4>
-                        <p>Slogan rápido do projeto.</p>
-                        <span>App Store: 4.9/5</span>
-                    </div>
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
-                        <h4>Nome do Projeto 2</h4>
-                        <p>Slogan rápido do projeto.</p>
-                        <span>App Store: 4.9/5</span>
-                    </div>
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
-                        <h4>Nome do Projeto 2</h4>
-                        <p>Slogan rápido do projeto.</p>
-                        <span>App Store: 4.9/5</span>
-                    </div>
-                    <div class="card-projeto" onclick="window.location.href='projeto-detalhe.html'">
-                        <h4>Nome do Projeto 2</h4>
-                        <p>Slogan rápido do projeto.</p>
-                        <span>App Store: 4.9/5</span>
+                        <span>App Store: 4.7/5</span>
                     </div>
                 </div>
             </article>
 
+            <!-- Aprendizados / Pesquisas -->
             <article id="pesquisas">
-                <h3>Aprendizados / Pesquisas</h3>
+                <h3 data-pt="Aprendizados / Pesquisas" data-en="Learnings / Research"></h3>
                 <div class="carousel-container">
-                    <div class="card-pesquisa">
-                        <h4>Tema Estudado</h4>
-                        <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
-                    </div>
-                    <div class="card-pesquisa">
-                        <h4>Tema Estudado</h4>
-                        <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
-                    </div>
                     <div class="card-pesquisa">
                         <h4>Tema Estudado</h4>
                         <p>Breve frase sobre do que se trata esta pesquisa ou tecnologia.</p>
@@ -135,33 +127,40 @@
 
     </main>
 
-    <footer id="tech-stack">
-        <p>HTML5 &bull; CSS3 &bull; JavaScript &bull; Git &bull; React &bull; Node.js</p>
+    <!-- ==============================
+         FOOTER
+    =============================== -->
+    <footer class="tech-stack">
+        <p>HTML5 &bull; CSS3 &bull; JavaScript &bull; Swift &bull; SwiftUI &bull; Git</p>
     </footer>
 
-    <footer id="main-footer">
-        <span>&copy; 2026 Seu Nome</span>
-        <button onclick="document.getElementById('modal-contato').showModal()">Contato</button>
-        <span>Criado com HTML, CSS e JS</span>
+    <footer class="site-footer">
+        <span>&copy; 2026 Richard Fagundes Rodrigues</span>
+        <button data-action="open-modal" data-target="modal-contato"
+                data-pt="Contato" data-en="Contact"></button>
+        <span data-pt="Feito com HTML, CSS e JS" data-en="Built with HTML, CSS & JS"></span>
     </footer>
 
+    <!-- ==============================
+         MODAIS
+    =============================== -->
     <dialog id="modal-curriculo">
-        <button class="close-btn" onclick="this.closest('dialog').close()">X</button>
-        <h2>Meu Currículo</h2>
-        <p>Aqui entrarão as informações detalhadas do seu CV.</p>
+        <button class="close-btn" data-action="close-modal" aria-label="Fechar">&times;</button>
+        <h2 data-pt="Meu Currículo" data-en="My Resume"></h2>
+        <p data-pt="Aqui entrarão as informações detalhadas do seu CV." data-en="Detailed CV information will go here."></p>
     </dialog>
 
     <dialog id="modal-contato">
-        <button class="close-btn" onclick="this.closest('dialog').close()">X</button>
-        <h2>Entre em Contato</h2>
+        <button class="close-btn" data-action="close-modal" aria-label="Fechar">&times;</button>
+        <h2 data-pt="Entre em Contato" data-en="Get in Touch"></h2>
         <p>Email: seu-email@dominio.com</p>
         <ul>
-            <li><a href="#">Mensagem via LinkedIn</a></li>
-            <li><a href="#">Outra rede social</a></li>
+            <li><a href="https://linkedin.com/in/richardsros" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer">GitHub</a></li>
         </ul>
     </dialog>
 
-    <script src="script.js" defer></script>
+    <script src="script.js"></script>
 
-    </body>
+</body>
 </html>
