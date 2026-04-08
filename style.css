@@ -14,13 +14,33 @@
     box-sizing: border-box;
 }
 
+a {
+    color: inherit;
+    display: flex;
+    align-items: center;
+}
+
+button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.lucide {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5; /* Deixa o traço mais elegante */
+}
+
 body {
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif; /* Alteração aqui */
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o body ocupe a tela toda */
+    min-height: 100vh;
 }
 
 /* Linhas tracejadas para simular seu wireframe */
@@ -149,3 +169,129 @@ body.light-mode {
     --text-color: #1a1a1a;
     --border-color: #ccc;
 }
+
+/* =========================================
+   9. RESPONSIVIDADE (MOBILE)
+   ========================================= */
+@media (max-width: 768px) {
+    #main-layout {
+        /* Transforma o grid em 1 única coluna */
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    #profile-section {
+        /* Remove o comportamento fixo (sticky) no celular */
+        position: relative; 
+        top: 0;
+        border-right: none;
+        border-bottom: 1px dashed var(--border-color);
+        padding-right: 0;
+        padding-bottom: 2rem;
+    }
+
+    header nav {
+        justify-content: center;
+        flex-wrap: wrap; /* Permite que os botões caiam para a linha de baixo se faltar espaço */
+    }
+
+    #main-footer {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* =========================================
+   10. COMPONENTES DO HEADER (SWITCH E DROPDOWN)
+   ========================================= */
+
+    /* Switch de Tema (Estilo iOS) */
+    .theme-switch {
+        position: relative;
+        display: inline-block;
+        width: 56px;
+        height: 30px;
+        margin: 0 1rem;
+    }
+    .theme-switch input {
+        opacity: 0; width: 0; height: 0;
+    }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #3a3a3c;
+        border-radius: 30px;
+        transition: .3s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5px;
+    }
+    .slider .lucide {
+        width: 14px; height: 14px; color: #a1a1aa;
+    }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 24px; width: 24px;
+        left: 3px; bottom: 3px;
+        background-color: white;
+        border-radius: 50%;
+        transition: .3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        z-index: 2;
+    }
+    input:checked + .slider {
+        background-color: #e5e5ea; /* Fundo claro no Light Mode */
+    }
+    input:checked + .slider:before {
+        transform: translateX(26px);
+        background-color: #1a1a1a;
+    }
+
+    /* Dropdown de Idioma */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        font-weight: 500;
+    }
+    .dropdown-btn .chevron {
+        width: 16px; height: 16px;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        right: 0; top: 110%;
+        background-color: var(--bg-color);
+        min-width: 130px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .dropdown.active .dropdown-content {
+        display: block;
+    }
+    .dropdown-content button {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        display: flex;
+        gap: 0.5rem;
+    }
+    .dropdown-content button:hover {
+        background-color: var(--border-color);
+    }
+    .flag {
+        font-size: 1.2rem;
+        line-height: 1;
+    }
+}
+

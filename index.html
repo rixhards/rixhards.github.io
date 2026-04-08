@@ -4,16 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfólio - Desenvolvedor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="style.css">
     </head>
 <body>
 
     <header>
         <nav>
-            <a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="https://linkedin.com/in/richardsros" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <button data-pt="Alternar Tema (Dark/Light)" data-en="Toggle Theme (Dark/Light)" id="theme-toggle"></button>
-            <button data-pt="Inglês" data-en="Português" id="lang-toggle"></button>
+            <a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <i data-lucide="github"></i>
+            </a>
+            <a href="https://linkedin.com/in/richardsros" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i data-lucide="linkedin"></i>
+            </a>
+
+            <label class="theme-switch" aria-label="Alternar Tema">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider">
+                    <i data-lucide="moon" class="icon-moon"></i>
+                    <i data-lucide="sun" class="icon-sun"></i>
+                </span>
+            </label>
+
+            <div class="dropdown" id="lang-dropdown">
+                <button class="dropdown-btn" id="lang-toggle-btn">
+                    <span class="flag" id="current-flag">🇧🇷</span>
+                    <span id="current-lang-text">PT-BR</span>
+                    <i data-lucide="chevron-down" class="chevron"></i>
+                </button>
+                <div class="dropdown-content">
+                    <button onclick="setLanguage('en')"><span class="flag">🇺🇸</span> EN-US</button>
+                    <button onclick="setLanguage('pt')"><span class="flag">🇧🇷</span> PT-BR</button>
+                </div>
+            </div>
         </nav>
     </header>
 

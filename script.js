@@ -1,53 +1,74 @@
+// Renderiza os ícones do Lucide
+lucide.createIcons();
+
 // =========================================
-// LÓGICA DE TEMA (DARK / LIGHT MODE)
+// LÓGICA DO SWITCH DE TEMA
 // =========================================
-const themeToggleBtn = document.getElementById('theme-toggle');
+const themeToggleCheckbox = document.getElementById('theme-toggle');
 const currentTheme = localStorage.getItem('theme');
 
-// Verifica se o usuário já havia escolhido o tema claro anteriormente
+// Verifica o armazenamento local na inicialização
 if (currentTheme === 'light') {
     document.body.classList.add('light-mode');
+    themeToggleCheckbox.checked = true; // Empurra a bolinha do switch para a direita
 }
 
-themeToggleBtn.addEventListener('click', () => {
-    // Alterna a classe no body
-    document.body.classList.toggle('light-mode');
-    
-    // Salva a preferência atual no localStorage
-    let theme = 'dark';
-    if (document.body.classList.contains('light-mode')) {
-        theme = 'light';
+themeToggleCheckbox.addEventListener('change', () => {
+    if (themeToggleCheckbox.checked) {
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.body.classList.remove('light-mode');
+        localStorage.setItem('theme', 'dark');
     }
-    localStorage.setItem('theme', theme);
 });
 
 // =========================================
-// LÓGICA DE IDIOMA (PT-BR / EN-US)
+// LÓGICA DO DROPDOWN DE IDIOMA
 // =========================================
-const langToggleBtn = document.getElementById('lang-toggle');
+const dropdown = document.getElementById('lang-dropdown');
+const langToggleBtn = document.getElementById('lang-toggle-btn');
+const currentFlag = document.getElementById('current-flag');
+const currentLangText = document.getElementById('current-lang-text');
 const elementsToTranslate = document.querySelectorAll('[data-pt][data-en]');
 
-// Define o idioma inicial com base no navegador do usuário
 let currentLang = navigator.language.startsWith('pt') ? 'pt' : 'en';
 
-function applyLanguage(lang) {
+// Abre/fecha o menu ao clicar
+langToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Evita que o clique feche imediatamente
+    dropdown.classList.toggle('active');
+});
+
+// Fecha o menu se clicar em qualquer lugar fora dele
+window.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('active');
+    }
+});
+
+// Função para aplicar a tradução (declarada no escopo global para o HTML acessar)
+window.setLanguage = function(lang) {
+    currentLang = lang;
+    
+    // Troca os textos do corpo do site
     elementsToTranslate.forEach(el => {
-        // Troca o texto interno do elemento pelo valor do atributo correspondente
         el.innerText = el.getAttribute(`data-${lang}`);
     });
     
-    // Atualiza o texto do botão para mostrar a opção de troca
-    langToggleBtn.innerText = lang === 'pt' ? 'EN' : 'PT-BR';
+    // Atualiza o botão do dropdown com o idioma atual
+    if (lang === 'pt') {
+        currentFlag.innerText = '🇧🇷';
+        currentLangText.innerText = 'PT-BR';
+        document.documentElement.lang = 'pt-BR';
+    } else {
+        currentFlag.innerText = '🇺🇸';
+        currentLangText.innerText = 'EN-US';
+        document.documentElement.lang = 'en-US';
+    }
     
-    // Atualiza a semântica da página para leitores de tela
-    document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en-US';
-}
+    dropdown.classList.remove('active'); // Fecha o menu
+};
 
-// Aplica o idioma assim que o script carrega
-applyLanguage(currentLang);
-
-langToggleBtn.addEventListener('click', () => {
-    // Alterna a variável e reaplica a função
-    currentLang = currentLang === 'pt' ? 'en' : 'pt';
-    applyLanguage(currentLang);
-});
+// Executa na primeira carga da página
+window.setLanguage(currentLang);
