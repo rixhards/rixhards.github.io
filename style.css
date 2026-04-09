@@ -1,151 +1,816 @@
-/* =========================================
-   1. VARIÁVEIS E RESET BÁSICO
-   ========================================= */
+/* ===========================================
+   SUMÁRIO
+   ===========================================
+   1. Custom Properties (Design Tokens)
+   2. Reset & Base
+   3. Tipografia
+   4. Header & Navegação
+   5. Theme Switch
+   6. Dropdown de Idioma
+   7. Layout Principal (CSS Grid)
+   8. Sidebar (Perfil) — Cor colorida
+   9. Conteúdo & Carrosséis — Cor neutra
+   10. Card Thumbnails
+   11. Footer — Compacto e neutro
+   12. Modais
+   13. Light Mode
+   14. Responsividade
+   =========================================== */
+
+/* ===========================================
+   1. CUSTOM PROPERTIES (DESIGN TOKENS)
+   =========================================== */
 :root {
-    /* Preparando o terreno para o Light/Dark mode no futuro */
-    --bg-color: #1a1a1a;
-    --text-color: #f5f5f5;
-    --border-color: #444;
+    /* Cores Dark Mode — Neutras */
+    --color-bg:           #0e0e11;
+    --color-surface:      #16161a;
+    --color-surface-2:    #1e1e24;
+    --color-border:       #2a2a33;
+    --color-text:         #e2e2e8;
+    --color-text-muted:   #9494a0;
+
+    /* Cores — Acento (roxo/azul baixa saturação) */
+    --color-accent:       #7c6fad;
+    --color-accent-hover: #9589c4;
+    --color-accent-subtle: rgba(124, 111, 173, 0.12);
+
+    /* Sidebar — Gradiente vibrante (roxo/índigo/azul) */
+    --color-sidebar-bg:       #170f2e;
+    --color-sidebar-surface:  #1e1540;
+    --color-sidebar-border:   #3d2f72;
+    --color-sidebar-text:     #e0daf4;
+    --color-sidebar-muted:    #a89ed0;
+
+    /* Header/Footer — Fixos neutros */
+    --color-bar-bg:       #111114;
+    --color-bar-border:   #222228;
+    --color-bar-text:     #a0a0aa;
+
+    /* Espaçamentos */
+    --space-xs:  0.25rem;
+    --space-sm:  0.5rem;
+    --space-md:  1rem;
+    --space-lg:  1.5rem;
+    --space-xl:  2rem;
+    --space-2xl: 3rem;
+
+    /* Tipografia */
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-size-xs:  0.75rem;
+    --font-size-sm:  0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg:  1.125rem;
+    --font-size-xl:  1.25rem;
+    --font-size-2xl: 1.5rem;
+
+    /* Bordas & Sombras */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.45);
+
+    /* Transições */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.25s ease;
+    --transition-slow: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* ===========================================
+   2. RESET & BASE
+   =========================================== */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+}
+
+button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.lucide {
+    width: 22px;
+    height: 22px;
+    stroke-width: 1.5;
+}
+
 body {
-    font-family: sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size-base);
+    background-color: var(--color-bg);
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Garante que o body ocupe a tela toda */
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Linhas tracejadas para simular seu wireframe */
-header, #tech-stack, #main-footer {
-    border-bottom: 1px dashed var(--border-color);
-    padding: 1.5rem 2rem;
+/* ===========================================
+   3. TIPOGRAFIA
+   =========================================== */
+h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    line-height: 1.3;
 }
 
-#tech-stack {
-    border-bottom: none;
-    border-top: 1px dashed var(--border-color);
-    text-align: center;
+h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 500;
+    color: var(--color-text-muted);
 }
 
-/* =========================================
-   2. HEADER E NAVEGAÇÃO (FLEXBOX)
-   ========================================= */
-header nav {
+h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+h4 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+}
+
+/* ===========================================
+   4. HEADER & NAVEGAÇÃO (compacto, neutro)
+   =========================================== */
+.site-header {
+    background-color: var(--color-bar-bg);
+    border-bottom: 1px solid var(--color-bar-border);
+    padding: var(--space-sm) var(--space-xl);
+    color: var(--color-bar-text);
+    /* Textura sutil — noise */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+}
+
+.site-header nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 1.5rem;
+    gap: var(--space-md);
 }
 
-/* =========================================
-   3. LAYOUT PRINCIPAL (CSS GRID)
-   ========================================= */
-#main-layout {
+/* Social icon links */
+.nav-icon-link {
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast), background-color var(--transition-fast);
+    color: #c0bcd8;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon-link:hover {
+    color: #ffffff;
+    background-color: rgba(124, 111, 200, 0.2);
+}
+
+/* Cores de marca dos ícones sociais */
+.nav-icon-link[aria-label*="LinkedIn"] {
+    color: #0077B5;
+}
+
+.nav-icon-link[aria-label*="LinkedIn"]:hover {
+    color: #0099e6;
+    background-color: rgba(0, 119, 181, 0.15);
+}
+
+/* GitHub: branco no dark, escuro no light (padrão da marca) */
+.nav-icon-link[aria-label*="GitHub"] {
+    color: #e0e0e0;
+}
+
+body.light-mode .nav-icon-link[aria-label*="GitHub"] {
+    color: #1a1a1a;
+}
+
+.nav-svg-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+}
+
+/* GitHub logo tem whitespace interno no path — compensa com escala visual */
+.nav-icon-link:first-child .nav-svg-icon {
+    transform: scale(1.12);
+}
+
+.nav-divider {
+    width: 1px;
+    height: 18px;
+    background-color: var(--color-bar-border);
+}
+
+/* ===========================================
+   5. THEME SWITCH (estilo toggle)
+   =========================================== */
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 28px;
+}
+
+.theme-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background-color: #2a2a33;
+    border-radius: var(--radius-full);
+    transition: background-color var(--transition-base);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.slider .lucide {
+    width: 13px;
+    height: 13px;
+    color: var(--color-text-muted);
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform var(--transition-slow);
+    z-index: 2;
+}
+
+input:checked + .slider {
+    background-color: #d8d8e0;
+}
+
+input:checked + .slider::before {
+    transform: translateX(24px);
+    background-color: #1a1a22;
+}
+
+/* ===========================================
+   6. DROPDOWN DE IDIOMA
+   =========================================== */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-sm);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    border-radius: var(--radius-sm);
+    transition: opacity var(--transition-fast);
+    color: var(--color-bar-text);
+}
+
+.dropdown-btn:hover {
+    color: var(--color-accent);
+}
+
+.dropdown-btn .chevron {
+    width: 14px;
+    height: 14px;
+    transition: transform var(--transition-fast);
+}
+
+.dropdown.active .dropdown-btn .chevron {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + var(--space-xs));
+    background-color: var(--color-surface);
+    min-width: 130px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    z-index: 10;
+    box-shadow: var(--shadow-md);
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+.dropdown-content button {
+    width: 100%;
+    padding: 0.6rem var(--space-md);
+    text-align: left;
+    display: flex;
+    gap: var(--space-sm);
+    font-size: var(--font-size-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.dropdown-content button:hover {
+    background-color: var(--color-surface-2);
+}
+
+.flag {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+/* ===========================================
+   7. LAYOUT PRINCIPAL (CSS GRID)
+   =========================================== */
+/* O wrapper em torno de main + tech-stack para o sidebar se estender até o tech-stack */
+.page-wrapper {
     display: grid;
-    /* Divide a tela: 1 fração pra esquerda, 2 frações pra direita */
-    grid-template-columns: 1fr 2.5fr; 
-    gap: 2rem;
-    padding: 2rem;
-    flex: 1; /* Faz o main ocupar o espaço restante entre header e footer */
+    grid-template-columns: 1fr 2.5fr;
+    flex: 1;
+    min-height: 0;
 }
 
-/* =========================================
-   4. COLUNA ESQUERDA (SIDEBAR FIXA)
-   ========================================= */
-#profile-section {
-    position: sticky;
-    top: 2rem; /* Trava a barra lateral no topo ao rolar a página */
-    height: fit-content;
-    border-right: 1px dashed var(--border-color);
-    padding-right: 2rem;
+/* Coluna esquerda: sidebar ocupa toda a altura do page-wrapper */
+.sidebar-column {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--color-sidebar-border);
+    /* Gradiente Apple — azul marinho profundo, como o macOS dark sidebar */
+    background: linear-gradient(
+        170deg,
+        #0a1628 0%,
+        #0d2137 30%,
+        #091d33 60%,
+        #061220 100%
+    );
+}
+
+/* Coluna direita: main + tech-stack empilhados */
+.content-column {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.main-layout {
+    display: block;
+    flex: 1;
+}
+
+/* ===========================================
+   8. SIDEBAR (PERFIL) — Cor colorida com textura
+   =========================================== */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 1;
+    padding: var(--space-xl);
+    background: transparent;
+    color: var(--color-sidebar-text);
+}
+
+.profile-section img {
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-md);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-section h1 {
+    margin-bottom: var(--space-xs);
+    color: var(--color-sidebar-text);
+}
+
+.profile-section h2 {
+    margin-bottom: var(--space-md);
+    color: var(--color-sidebar-muted);
+}
+
+.profile-section p {
+    color: var(--color-sidebar-muted);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
 }
 
 .profile-actions {
     display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+    width: 100%;
 }
 
 .profile-actions button {
-    flex: 1; /* Faz os botões terem o mesmo tamanho */
-    padding: 0.5rem;
+    flex: 1;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-sidebar-border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-sidebar-text);
+    transition: all var(--transition-base);
 }
 
-/* =========================================
-   5. COLUNA DIREITA E CARROSSÉIS (SCROLL SNAP)
-   ========================================= */
-#content-section {
+.profile-actions button:hover {
+    background-color: rgba(124, 111, 173, 0.15);
+    border-color: var(--color-accent);
+    color: var(--color-accent-hover);
+}
+
+/* ===========================================
+   9. CONTEÚDO — Cor neutra
+   =========================================== */
+.content-section {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    min-width: 0
+    min-width: 0;
+    padding: var(--space-xl);
+    background-color: var(--color-bg);
+    flex: 1;
 }
 
-.carousel-container {
+/* ===========================================
+   9a. PROJETOS — Grid dinâmico (destaque)
+   =========================================== */
+#projetos {
+    flex: 1;
+}
+
+#projetos h3 {
+    margin-bottom: var(--space-lg);
+}
+
+.projects-grid {
     display: flex;
-    overflow-x: auto; /* Habilita rolagem horizontal */
-    scroll-snap-type: x mandatory; /* Força o card a parar na posição certa */
-    gap: 1.5rem;
-    padding-bottom: 1rem;
-    margin-top: 1rem;
-    width: 100%; /* Garante que respeite o limite do pai */
-    scrollbar-width: none; /* Oculta scrollbar no Firefox */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-lg);
+    padding: var(--space-sm);
 }
 
-/* Oculta scrollbar no Chrome/Safari/Edge */
-.carousel-container::-webkit-scrollbar {
-    display: none;
-}
-
-.card-projeto, .card-pesquisa {
-    scroll-snap-align: start; /* Ponto de parada do scroll */
-    min-width: 280px; /* Tamanho mínimo dos cards */
-    flex-shrink: 0; /* Impede que os cards sejam esmagados para caberem na tela */
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 1.5rem;
+/* Atualize a classe existente */
+.projects-grid .card-projeto {
+    position: relative;
+    flex: 1 1 260px;
+    max-width: 350px;
+    height: 220px; /* Altura fixa para dar destaque à imagem */
+    padding: 0; /* Removemos o padding para a imagem colar nas bordas */
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas */
     cursor: pointer;
+    transition: all var(--transition-base);
+    display: flex;
+    align-items: flex-end; /* Posiciona a div de overlay no fundo do card */
 }
 
-/* =========================================
-   6. FOOTER INFERIOR
-   ========================================= */
-#main-footer {
+/* Efeito de hover mantido */
+.projects-grid .card-projeto:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 1px var(--color-accent), var(--shadow-sm);
+    transform: translateY(-2px);
+}
+
+/* Novas regras para a imagem e o texto flutuante */
+.card-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    z-index: 1;
+}
+
+.card-overlay {
+    position: relative;
+    z-index: 2; /* Fica acima da imagem */
+    width: 100%;
+    padding: var(--space-md);
+    /* Gradiente linear do preto para o transparente para dar leitura ao texto */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 100%);
+    display: flex;
+    justify-content: space-between; /* Separa o título da nota (esquerda/direita) */
+    align-items: center;
+}
+
+.card-overlay h4 {
+    margin: 0;
+    color: #ffffff; /* Força cor clara sobre a imagem */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); /* Relevo e separação visual */
+    text-align: left;
+}
+
+.card-overlay span {
+    margin: 0;
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* ===========================================
+   9b. PESQUISAS — Scroll vertical (menor)
+   =========================================== */
+#pesquisas {
+    padding-top: var(--space-lg);
+}
+
+#pesquisas h3 {
+    margin-bottom: var(--space-md);
+    position: sticky;
+    top: 0;
+    background-color: var(--color-bg);
+    z-index: 2;
+    padding-bottom: var(--space-sm);
+}
+
+.research-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: var(--space-sm);
+    /* Scrollbar fina custom */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+}
+
+.research-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.research-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: var(--radius-full);
+}
+
+.card-pesquisa {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    background-color: var(--color-surface);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    flex-shrink: 0;
+}
+
+.card-pesquisa:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 1px var(--color-accent), var(--shadow-sm);
+}
+
+.card-pesquisa .card-thumbnail {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.card-pesquisa h4 {
+    margin-bottom: 0;
+    text-align: left;
+    font-size: var(--font-size-sm);
+}
+
+.card-pesquisa p {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    margin-bottom: 0;
+    text-align: left;
+}
+
+/* ===========================================
+   10. CARD THUMBNAILS
+   =========================================== */
+.card-thumbnail {
+    width: 56px;
+    height: 56px;
+    margin-bottom: var(--space-md);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-surface-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===========================================
+   11. FOOTER — Compacto e neutro
+   =========================================== */
+/* Tech Stack agora faz parte da sidebar — herda as cores do sidebar-column */
+.tech-stack {
+    background: transparent;
+    border-top: 1px solid var(--color-sidebar-border);
+    padding: var(--space-lg) var(--space-xl);
+    text-align: center;
+    color: var(--color-sidebar-muted);
+}
+
+.tech-stack p {
+    font-size: var(--font-size-xs);
+    line-height: 2;
+    letter-spacing: 0.3px;
+}
+
+.site-footer {
+    background-color: var(--color-bar-bg);
+    border-top: 1px solid var(--color-bar-border);
+    padding: var(--space-sm) var(--space-xl);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.875rem;
+    font-size: var(--font-size-xs);
+    color: var(--color-bar-text);
 }
 
-/* =========================================
-   7. MODAIS BÁSICOS
-   ========================================= */
+/* ===========================================
+   12. MODAIS
+   =========================================== */
 dialog {
     margin: auto;
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    padding: var(--space-xl);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    max-width: 480px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
 }
 
 dialog::backdrop {
-    background: rgba(0, 0, 0, 0.7); /* Fundo escuro atrás do modal */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-/* =========================================
-   8. TEMA CLARO (LIGHT MODE)
-   ========================================= */
+dialog h2 {
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+}
+
+dialog p {
+    color: var(--color-text-muted);
+    line-height: 1.6;
+}
+
+dialog ul {
+    list-style: none;
+    margin-top: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+dialog ul a {
+    color: var(--color-accent);
+    transition: color var(--transition-fast);
+}
+
+dialog ul a:hover {
+    color: var(--color-accent-hover);
+}
+
+.close-btn {
+    float: right;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+}
+
+.close-btn:hover {
+    background-color: var(--color-surface-2);
+}
+
+/* ===========================================
+   13. LIGHT MODE
+   =========================================== */
 body.light-mode {
-    --bg-color: #f5f5f5;
-    --text-color: #1a1a1a;
-    --border-color: #ccc;
+    /* Neutras */
+    --color-bg:           #f5f5f7;
+    --color-surface:      #ffffff;
+    --color-surface-2:    #f0f0f2;
+    --color-border:       #dddde3;
+    --color-text:         #1c1c22;
+    --color-text-muted:   #6e6e7a;
+
+    /* Acento */
+    --color-accent:       #6558a6;
+    --color-accent-hover: #7c6fbd;
+    --color-accent-subtle: rgba(101, 88, 166, 0.08);
+
+    /* Sidebar light — lavanda suave, não lilac chapado */
+    --color-sidebar-bg:       #f0edf9;
+    --color-sidebar-surface:  #e8e3f4;
+    --color-sidebar-border:   #cdc6e4;
+    --color-sidebar-text:     #1e1a36;
+    --color-sidebar-muted:    #5a5478;
+
+    /* Barras */
+    --color-bar-bg:       #ededf0;
+    --color-bar-border:   #d8d8de;
+    --color-bar-text:     #6a6a76;
+
+    /* Sombras */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Sidebar gradient sobrescrito no light mode — azul céu Apple (iOS/macOS) */
+body.light-mode .sidebar-column {
+    background: linear-gradient(
+        170deg,
+        #dbeafe 0%,
+        #e0e7ff 35%,
+        #eff6ff 65%,
+        #dbeafe 100%
+    );
+}
+
+/* ===========================================
+   14. RESPONSIVIDADE
+   =========================================== */
+@media (max-width: 768px) {
+    .page-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar-column {
+        border-right: none;
+        border-bottom: 1px solid var(--color-sidebar-border);
+    }
+
+    .profile-section {
+        padding-bottom: var(--space-lg);
+    }
+
+    .site-header nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .site-footer {
+        flex-direction: column;
+        gap: var(--space-sm);
+        text-align: center;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .nav-divider {
+        display: none;
+    }
 }
