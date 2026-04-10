@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfólio de Richard Fagundes Rodrigues — Desenvolvedor iOS. Projetos, pesquisas e contato.">
-    <title>Richard Fagundes Rodrigues — Portfólio</title>
+    <meta name="description" content="Richard Rodrigues — iOS Developer. Projects, research, and contact.">
+    <title>Richard Rodrigues — Portfolio</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,10 +14,18 @@
     <!-- Icons: Lucide via unpkg -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
+    <!-- Three.js (Vanta dependency) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- Vanta.js - FOG effect -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Vanta.js animated background canvas (behind everything) -->
+    <div id="vanta-bg"></div>
 
     <!-- ==============================
          HEADER
@@ -52,8 +60,8 @@
             <!-- Language Dropdown -->
             <div class="dropdown" id="lang-dropdown">
                 <button class="dropdown-btn" id="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
-                    <span class="flag" id="current-flag">🇧🇷</span>
-                    <span id="current-lang-text">PT-BR</span>
+                    <span class="flag" id="current-flag">🇺🇸</span>
+                    <span id="current-lang-text">EN-US</span>
                     <i data-lucide="chevron-down" class="chevron"></i>
                 </button>
                 <div class="dropdown-content" role="menu">
@@ -69,127 +77,109 @@
     </header>
 
     <!-- ==============================
-         PAGE WRAPPER
-         Grid de 2 colunas: sidebar (full height) | conteúdo + tech-stack
+         SINGLE COLUMN MAIN LAYOUT
     =============================== -->
-    <div class="page-wrapper">
-
-        <!-- Coluna Esquerda — Sidebar com gradiente full-height -->
-        <div class="sidebar-column">
-            <aside class="profile-section">
-                <img src="imgs/Foto_Richard.jpeg" alt="Foto de perfil de Richard" width="150">
-                <h1 data-pt="Richard Fagundes Rodrigues" data-en="Richard Fagundes Rodrigues">Richard Fagundes Rodrigues</h1>
-                <h2 data-pt="Desenvolvedor iOS" data-en="iOS Developer">iOS Developer</h2>
-                <p data-pt="Breve resumo sobre mim..." data-en="Short summary about me...">Short summary about me...</p>
-
-                <div class="profile-actions">
-                    <button data-action="open-modal" data-target="modal-curriculo"
-                            data-pt="Currículo" data-en="Resume">Resume</button>
-                    <button data-action="open-modal" data-target="modal-contato"
-                            data-pt="Contato" data-en="Contact">Contact</button>
+    <main class="main-layout">
+        
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-inner">
+                <img src="imgs/FotoRichard.jpeg" alt="Photo of Richard Rodrigues" class="hero-photo">
+                <div class="hero-text">
+                    <h1>Richard Rodrigues</h1>
+                    <h2 data-pt="Desenvolvedor iOS" data-en="iOS Developer">iOS Developer</h2>
+                    <p data-pt="Meu objetivo é fornecer experiências de alta qualidade e impacto na vida das pessoas. Sou de Porto Alegre - RS, estudando Ciência da Computação na ATITUS Educação." data-en="My goal is to provide high-quality experiences that impact people's lives. I'm from Porto Alegre - RS, studying Computer Science at ATITUS Educação.">My goal is to provide high-quality experiences that impact people's lives. I'm from Porto Alegre - RS, studying Computer Science at ATITUS Educação.</p>
+                    <div class="hero-actions">
+                        <!--<button class="btn-primary" data-action="open-modal" data-target="modal-curriculo"
+                                data-pt="Sobre" data-en="About">About</button>-->
+                        <button class="btn-secondary" data-action="open-modal" data-target="modal-contato"
+                                data-pt="Contato" data-en="Contact">Contact</button>
+                    </div>
                 </div>
-            </aside>
-
-            <!-- Tech Stack dentro da sidebar -->
-            <div class="tech-stack">
-                <p>Swift &bull; SwiftUI &bull; UIKit &bull; CoreData &bull; Combine &bull; SpriteKit &bull; HTML5 &bull; CSS3 &bull; JavaScript &bull; Git &bull; Figma &bull; Xcode &bull; REST APIs &bull; Unit Testing</p>
             </div>
-        </div>
+        </section>
 
-        <!-- Coluna Direita — Conteúdo + Tech Stack -->
-        <div class="content-column">
+        <!-- PROJECTS GRID -->
+        <section id="projetos" class="projects-section">
+            <h2 data-pt="Projetos" data-en="Projects" style="text-align: center; margin-bottom: var(--space-2xl); font-size: var(--font-size-2xl);">Projects</h2>
+            <div class="projects-grid">
+                
+                <a class="project-card" href="cerne.html" aria-label="Project 1">
+                    <img src="imgs/Cerne/Icon.svg" alt="Cerne screenshot" class="project-card-bg">
+                    <div class="project-card-overlay">
+                        <h3>Cerne</h3>
+                        <p data-pt="Seu impacto no mundo, na palma de suas mãos" data-en="Your impact on the world, in the palm of your hands">Your impact on the world, in the palm of your hands</p>
+                    </div>
+                </a>
 
-            <main class="main-layout">
-                <section class="content-section">
+                <a class="project-card" href="foodswap.html" aria-label="Project 2">
+                    <img src="imgs/Food Swap/Icon.svg" alt="Food Swap screenshot" class="project-card-bg">
+                    <div class="project-card-overlay">
+                        <h3>Food Swap</h3>
+                        <p data-pt="A escolha certa sem stress, aproveite mais os momentos" data-en="The right choice without stress, enjoy the moments more">The right choice without stress, enjoy the moments more</p>
+                    </div>
+                </a>
 
-                    <!-- Projetos -->
-                    <article id="projetos">
-                        <h3 data-pt="Projetos" data-en="Projects">Projects</h3>
-                        <div class="projects-grid">
-                            <div class="card-projeto">
-                                <img class="card-bg-image" src="imgs/Cat_Animation_splash.png" alt="Logo do Projeto 1">
-                                
-                                <div class="card-overlay">
-                                    <h4 data-pt="Nome do Projeto 1" data-en="Project Name 1">Nome do App</h4>
-                                    <p data-pt="Slogan rápido do projeto." data-en="Quick project slogan.">Quick project slogan.</p>
-                                    <span>4.8 ⭐</span>
-                                </div>
-                            </div>
-                            <div class="card-projeto">
-                                <div class="card-thumbnail">
-                                    <img src="imgs/Coin.png" alt="Logo do Projeto 2">
-                                </div>
-                                <h4 data-pt="Nome do Projeto 2" data-en="Project Name 2">Project Name 2</h4>
-                                <p data-pt="Slogan rápido do projeto." data-en="Quick project slogan.">Quick project slogan.</p>
-                                <span>App Store: 4.9/5</span>
-                            </div>
-                            <div class="card-projeto">
-                                <div class="card-thumbnail">
-                                    <img src="imgs/Coin.png" alt="Logo do Projeto 3">
-                                </div>
-                                <h4 data-pt="Nome do Projeto 3" data-en="Project Name 3">Project Name 3</h4>
-                                <p data-pt="Slogan rápido do projeto." data-en="Quick project slogan.">Quick project slogan.</p>
-                                <span>App Store: 4.7/5</span>
-                            </div>
-                            <div class="card-projeto">
-                                <div class="card-thumbnail">
-                                    <img src="imgs/Cat_Animation_splash.png" alt="Logo do Projeto 4">
-                                </div>
-                                <h4 data-pt="Nome do Projeto 4" data-en="Project Name 4">Project Name 4</h4>
-                                <p data-pt="Slogan rápido do projeto." data-en="Quick project slogan.">Quick project slogan.</p>
-                                <span>App Store: 4.7/5</span>
-                            </div>
-                            <div class="card-projeto">
-                                <div class="card-thumbnail">
-                                    <img src="imgs/Coin.png" alt="Logo do Projeto 5">
-                                </div>
-                                <h4 data-pt="Nome do Projeto 5" data-en="Project Name 5">Project Name 5</h4>
-                                <p data-pt="Slogan rápido do projeto." data-en="Quick project slogan.">Quick project slogan.</p>
-                                <span>App Store: 4.7/5</span>
-                            </div>
-                        </div>
-                    </article>
+                <a class="project-card" href="untoothable.html" aria-label="Project 3">
+                    <img src="imgs/Untoothable/Icon.svg" alt="Untoothable screenshot" class="project-card-bg">
+                    <div class="project-card-overlay">
+                        <h3>Untoothable</h3>
+                        <p data-pt="Fuja da fada malvada e escape dos inimigos" data-en="Escape the evil fairy and avoid enemies">Escape the evil fairy and avoid enemies</p>
+                    </div>
+                </a>
 
-                    <!-- Aprendizados / Pesquisas -->
-                    <article id="pesquisas">
-                        <h3 data-pt="Aprendizados / Pesquisas" data-en="Learnings / Research">Learnings / Research</h3>
-                        <div class="research-scroll">
-                            <div class="card-pesquisa">
-                                <div class="card-thumbnail">
-                                    <img src="imgs/Coin.png" alt="Logo da Pesquisa 1">
-                                </div>
-                                <div class="research-info">
-                                    <h4 data-pt="Tema Estudado 1" data-en="Studied Topic 1">Studied Topic 1</h4>
-                                    <p data-pt="Breve frase sobre do que se trata esta pesquisa ou tecnologia." data-en="Brief sentence about what this research or technology is about.">Brief sentence about what this research or technology is about.</p>
-                                </div>
-                            </div>
-                            <div class="card-pesquisa">
-                                <div class="card-thumbnail">
-                                    <img src="imgs/Coin.png" alt="Logo da Pesquisa 2">
-                                </div>
-                                <div class="research-info">
-                                    <h4 data-pt="Tema Estudado 2" data-en="Studied Topic 2">Studied Topic 2</h4>
-                                    <p data-pt="Breve frase sobre do que se trata esta pesquisa ou tecnologia." data-en="Brief sentence about what this research or technology is about.">Brief sentence about what this research or technology is about.</p>
-                                </div>
-                            </div>
-                            <div class="card-pesquisa">
-                                <div class="card-thumbnail">
-                                    <img src="imgs/Coin.png" alt="Logo da Pesquisa 3">
-                                </div>
-                                <div class="research-info">
-                                    <h4 data-pt="Tema Estudado 3" data-en="Studied Topic 3">Studied Topic 3</h4>
-                                    <p data-pt="Breve frase sobre do que se trata esta pesquisa ou tecnologia." data-en="Brief sentence about what this research or technology is about.">Brief sentence about what this research or technology is about.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
+                <a class="project-card" href="recapsule.html" aria-label="Project 4">
+                    <img src="imgs/Recapsule/Icon.svg" alt="Recapsule screenshot" class="project-card-bg">
+                    <div class="project-card-overlay">
+                        <h3>Recapsule</h3>
+                        <p data-pt="Memórias compartilhadas em uma capsula do tempo" data-en="Shared memories in a time capsule">Shared memories in a time capsule</p>
+                    </div>
+                </a>
 
-                </section>
-            </main>
+                <a class="project-card" href="purrchase.html" aria-label="Project 5">
+                    <img src="imgs/Purrchase/Icon.svg" alt="Purrchase screenshot" class="project-card-bg">
+                    <div class="project-card-overlay">
+                        <h3>Purrchase</h3>
+                        <p data-pt="Sua listinha do mercado nunca foi tão prática!" data-en="Your shopping list has never been so practical!">Your shopping list has never been so practical!</p>
+                    </div>
+                </a>
 
-        </div><!-- /content-column -->
+            </div>
+        </section>
 
-    </div><!-- /page-wrapper -->
+        <!-- TECH STACK -->
+        <section id="tech-stack" class="tech-stack-section">
+            <h2 data-pt="Tecnologias" data-en="Technologies" style="text-align: center; margin-bottom: var(--space-xl); font-size: var(--font-size-2xl);">Technologies</h2>
+            <div class="tech-pills">
+                <span class="pill">Swift</span>
+                <span class="pill">SwiftUI</span>
+                <span class="pill">UIKit</span>
+                <span class="pill">CoreData</span>
+                <span class="pill">Combine</span>
+                <span class="pill">SpriteKit</span>
+                <span class="pill">HTML5</span>
+                <span class="pill">CSS3</span>
+                <span class="pill">JavaScript</span>
+                <span class="pill">Git</span>
+                <span class="pill">Figma</span>
+                <span class="pill">Xcode</span>
+                <span class="pill">REST APIs</span>
+                <span class="pill">Unit Testing</span>
+            </div>
+        </section>
+
+        <!-- CALL TO ACTION (BOTTOM) -->
+        <section class="cta-bottom">
+            <p data-pt="Vamos trabalhar juntos?" data-en="Let's work together?" style="font-size: var(--font-size-xl); font-weight: 500; color: var(--color-heading);">Let's work together?</p>
+            <div class="cta-actions">
+                <!--<button class="btn-primary" data-action="open-modal" data-target="modal-curriculo"
+                        data-pt="Sobre" data-en="About">About</button>-->
+                <button class="btn-secondary" data-action="open-modal" data-target="modal-contato"
+                        data-pt="Contato" data-en="Contact">Contact</button>
+            </div>
+        </section>
+
+    </main>
 
     <!-- ==============================
          FOOTER PRINCIPAL
@@ -204,14 +194,14 @@
     =============================== -->
     <dialog id="modal-curriculo">
         <button class="close-btn" data-action="close-modal" aria-label="Fechar">&times;</button>
-        <h2 data-pt="Meu Currículo" data-en="My Resume">My Resume</h2>
-        <p data-pt="Aqui entrarão as informações detalhadas do seu CV." data-en="Detailed CV information will go here.">Detailed CV information will go here.</p>
+        <h2 data-pt="Sobre Mim" data-en="About Me">About Me</h2>
+        <p data-pt="Aqui entrarão as informações sobre mim." data-en="Information about me will go here.">Information about me will go here.</p>
     </dialog>
 
     <dialog id="modal-contato">
         <button class="close-btn" data-action="close-modal" aria-label="Fechar">&times;</button>
         <h2 data-pt="Entre em Contato" data-en="Get in Touch">Get in Touch</h2>
-        <p>Email: seu-email@dominio.com</p>
+        <p>Email: richards1305@gmail.com</p>
         <ul>
             <li><a href="https://www.linkedin.com/in/richardsros/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
             <li><a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer">GitHub</a></li>

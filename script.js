@@ -4,8 +4,11 @@
  * Módulos:
  * - Theme toggle (dark/light mode com persistência em localStorage)
  * - Language switcher (PT-BR / EN-US com detecção automática)
+ * - Vanta.js integration (FOG effect with Cyan palette)
  * - Event delegation para modais e dropdown
  */
+
+let vantaEffect = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     // Renderiza os ícones do Lucide
@@ -18,26 +21,63 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ===========================================
-   THEME TOGGLE
+   THEME TOGGLE & VANTA.JS
    =========================================== */
 
-/**
- * Inicializa o tema com base na preferência salva no localStorage.
- * Escuta mudanças no checkbox do toggle.
- */
+function initVanta(isLight) {
+    if (vantaEffect) {
+        vantaEffect.destroy();
+    }
+
+    // Temática focada no Cyan (0x00ffff) - Light levemente mais escuro
+    const highlightColor = isLight ? 0x008b8b : 0x00ffff; // Teal escuro (Light) / Cyan neon brilhante (Dark)
+    const midtoneColor   = isLight ? 0x00d2d2 : 0x008080; // Ciano denso / Teal médio
+    const lowlightColor  = isLight ? 0x8ce6e6 : 0x003333; // Azul-esverdeado claro / Teal muito escuro
+    const baseColor      = isLight ? 0xd0e8e8 : 0x000508; // Fundo cinza-ciano escurecido (Light) / Preto abissal (Dark)
+
+    vantaEffect = VANTA.FOG({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        highlightColor: highlightColor,
+        midtoneColor: midtoneColor,
+        lowlightColor: lowlightColor,
+        baseColor: baseColor,
+        blurFactor: 0.51,
+        speed: -0.20,
+        zoom: 0.10
+    });
+}
+
 function initTheme() {
     const toggle = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('theme');
 
+    let isLight = false;
+
     if (savedTheme === 'light') {
         document.body.classList.add('light-mode');
         toggle.checked = true;
+        isLight = true;
+    }
+
+    // Initialize the background effect with the correct theme
+    if (typeof VANTA !== 'undefined') {
+        initVanta(isLight);
     }
 
     toggle.addEventListener('change', () => {
-        const isLight = toggle.checked;
+        isLight = toggle.checked;
         document.body.classList.toggle('light-mode', isLight);
         localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        
+        // Re-initialize Vanta when theme changes for proper colors
+        if (typeof VANTA !== 'undefined') {
+            initVanta(isLight);
+        }
     });
 }
 
@@ -45,15 +85,9 @@ function initTheme() {
    LANGUAGE SWITCHER
    =========================================== */
 
-/** Idioma ativo no momento. */
 let currentLang = navigator.language.startsWith('pt') ? 'pt' : 'en';
 
-/**
- * Inicializa o seletor de idioma: aplica traduções na primeira carga
- * e registra listeners nos botões do dropdown.
- */
 function initLanguage() {
-    // Botões dentro do dropdown de idioma
     const langButtons = document.querySelectorAll('.dropdown-content [data-lang]');
     langButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -61,15 +95,9 @@ function initLanguage() {
         });
     });
 
-    // Aplica o idioma detectado na carga inicial
     setLanguage(currentLang);
 }
 
-/**
- * Aplica o idioma selecionado a todos os elementos com atributos data-pt / data-en.
- * Atualiza o botão do dropdown e o atributo lang do documento.
- * @param {string} lang - Código do idioma ('pt' ou 'en')
- */
 function setLanguage(lang) {
     currentLang = lang;
 
@@ -91,7 +119,6 @@ function setLanguage(lang) {
         document.documentElement.lang = 'en-US';
     }
 
-    // Fecha o dropdown após selecionar
     const dropdown = document.getElementById('lang-dropdown');
     dropdown.classList.remove('active');
 }
@@ -100,9 +127,6 @@ function setLanguage(lang) {
    DROPDOWN
    =========================================== */
 
-/**
- * Inicializa o dropdown de idioma: toggle ao clicar e fecha ao clicar fora.
- */
 function initDropdown() {
     const dropdown = document.getElementById('lang-dropdown');
     const toggleBtn = document.getElementById('lang-toggle-btn');
@@ -125,10 +149,6 @@ function initDropdown() {
    EVENT DELEGATION (modais)
    =========================================== */
 
-/**
- * Escuta cliques em todo o documento e despacha ações com base no
- * atributo data-action do elemento clicado.
- */
 function initEventDelegation() {
     document.addEventListener('click', (e) => {
         const target = e.target.closest('[data-action]');
@@ -151,7 +171,6 @@ function initEventDelegation() {
         }
     });
 
-    // Fecha o modal ao clicar no backdrop (área fora do conteúdo)
     document.querySelectorAll('dialog').forEach(dialog => {
         dialog.addEventListener('click', (e) => {
             if (e.target === dialog) {

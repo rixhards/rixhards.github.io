@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Richard Rodrigues — Cerne Project App">
+    <title>Cerne — Richard Rodrigues</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons: Lucide via unpkg -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Three.js (Vanta dependency) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <!-- Vanta.js - FOG effect -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Vanta.js animated background canvas -->
+    <div id="vanta-bg"></div>
+
+    <!-- ==============================
+         HEADER
+    =============================== -->
+    <header class="site-header">
+        <nav>
+            <a href="index.html" class="nav-icon-link" aria-label="Voltar para a Home" style="margin-right: auto; gap: var(--space-xs); font-weight: 500;">
+                <i data-lucide="arrow-left" style="width: 18px;"></i> <span data-pt="Voltar" data-en="Back">Back</span>
+            </a>
+
+            <!-- Social Links -->
+            <a href="https://github.com/rixhards" target="_blank" rel="noopener noreferrer" aria-label="Perfil no GitHub" class="nav-icon-link">
+                <!-- GitHub icon inline SVG -->
+                <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/richardsros/" target="_blank" rel="noopener noreferrer" aria-label="Perfil no LinkedIn" class="nav-icon-link">
+                <!-- LinkedIn icon inline SVG -->
+                <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+            </a>
+
+            <span class="nav-divider"></span>
+
+            <!-- Theme Toggle -->
+            <label class="theme-switch" aria-label="Alternar tema claro/escuro">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider">
+                    <i data-lucide="moon" class="icon-moon"></i>
+                    <i data-lucide="sun" class="icon-sun"></i>
+                </span>
+            </label>
+
+            <!-- Language Dropdown -->
+            <div class="dropdown" id="lang-dropdown">
+                <button class="dropdown-btn" id="lang-toggle-btn" aria-haspopup="true" aria-expanded="false">
+                    <span class="flag" id="current-flag">🇺🇸</span>
+                    <span id="current-lang-text">EN-US</span>
+                    <i data-lucide="chevron-down" class="chevron"></i>
+                </button>
+                <div class="dropdown-content" role="menu">
+                    <button role="menuitem" data-lang="en">
+                        <span class="flag">🇺🇸</span> EN-US
+                    </button>
+                    <button role="menuitem" data-lang="pt">
+                        <span class="flag">🇧🇷</span> PT-BR
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==============================
+         SINGLE COLUMN MAIN LAYOUT (PROJECT)
+    =============================== -->
+    <main class="main-layout project-page">
+        
+        <!-- APP HERO SECTION -->
+        <section class="app-hero-section">
+            <div class="app-hero-inner">
+                <div class="app-icon-wrapper">
+                    <img src="imgs/Cerne/Icon.svg" alt="Cerne App Icon" class="app-icon-large">
+                </div>
+                <div class="app-header-info">
+                    <h1 class="app-title">Cerne</h1>
+                    <p class="app-tagline" data-pt="Seu impacto no mundo, na palma de suas mãos" data-en="Your impact on the world, in the palm of your hands">Your impact on the world, in the palm of your hands</p>
+                    <div class="app-meta">
+                        <span class="app-rating">4.8 <i data-lucide="star" class="star-icon"></i></span>
+                        <span class="app-dev" data-pt="Richard Rodrigues" data-en="Richard Rodrigues">Richard Rodrigues</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCREENSHOTS SCROLL -->
+        <section class="app-screenshots-section">
+            <div class="screenshots-scroll">
+                <img src="imgs/Cerne/2.Preview.svg" alt="Screenshot 2" class="screenshot-img">
+                <img src="imgs/Cerne/3.Preview.svg" alt="Screenshot 3" class="screenshot-img">
+                <img src="imgs/Cerne/4.Preview.svg" alt="Screenshot 4" class="screenshot-img">
+                <img src="imgs/Cerne/5.Preview.svg" alt="Screenshot 5" class="screenshot-img">
+                <img src="imgs/Cerne/6.Preview.svg" alt="Screenshot 6" class="screenshot-img">
+                <img src="imgs/Cerne/1.DownloadNow.svg" alt="Screenshot 1" class="screenshot-img">
+            </div>
+        </section>
+
+        <!-- DEEP DIVE INFO -->
+        <section class="app-details-section">
+            <article class="detail-block">
+                <h2 data-pt="Sobre o app" data-en="About the app">About the app</h2>
+                <p data-pt="O Cerne é uma aplicação desenvolvida com a intenção de amplificar seu impacto positivo no mundo, tudo isso organizado e mensurado diretamente na palma da sua mão. Ele reúne métricas claras e um sistema de acompanhamento contínuo para que você saiba exatamente onde está fazendo a diferença no seu dia a dia." data-en="Cerne is an application developed to amplify your positive impact in the world, all organized and measured right in the palm of your hand. It gathers clear metrics and a continuous tracking system so you know exactly where you are making a difference in your daily life.">Cerne is an application developed to amplify your positive impact in the world, all organized and measured right in the palm of your hand. It gathers clear metrics and a continuous tracking system so you know exactly where you are making a difference in your daily life.</p>
+            </article>
+
+            <div class="detail-divider"></div>
+
+            <article class="detail-block">
+                <h2 data-pt="Como foi desenvolvido" data-en="How it was developed">How it was developed</h2>
+                <p data-pt="Este projeto foi construído nativamente em Swift utilizando o framework SwiftUI, em conjunto com o poderoso paradigma de programação reativa do Combine. Além disso, todos os seus dados locais são salvos de forma altamente performática através do CoreData, garantindo uma resposta fluida nas animações e navegação entre interfaces." data-en="This project was natively built in Swift using the SwiftUI framework, alongside the powerful reactive programming paradigm of Combine. Additionally, all its local data is saved in a highly performant way through CoreData, ensuring fluid responses in animations and interface navigation.">This project was natively built in Swift using the SwiftUI framework, alongside the powerful reactive programming paradigm of Combine. Additionally, all its local data is saved in a highly performant way through CoreData, ensuring fluid responses in animations and interface navigation.</p>
+            </article>
+
+            <div class="detail-divider"></div>
+
+            <article class="detail-block">
+                <h2 data-pt="Minha visão" data-en="My vision">My vision</h2>
+                <p data-pt="Trabalhar no Cerne foi um divisor de águas na forma como eu encaro o desenvolvimento de produtos centrados na experiência do usuário. O grande desafio técnico não foi apenas construir a lógica, mas sim garantir uma sensação constante de que o app era um ambiente seguro, estimulante e totalmente responsivo a cada interação." data-en="Working on Cerne was a turning point in how I view user-centric product development. The major technical challenge wasn't just building the logic, but ensuring a constant feeling that the app was a safe, stimulating, and fully responsive environment with every interaction.">Working on Cerne was a turning point in how I view user-centric product development. The major technical challenge wasn't just building the logic, but ensuring a constant feeling that the app was a safe, stimulating, and fully responsive environment with every interaction.</p>
+            </article>
+        </section>
+
+    </main>
+
+    <!-- ==============================
+         FOOTER PRINCIPAL
+    =============================== -->
+    <footer class="site-footer">
+        <span>&copy; 2026 Richard Fagundes Rodrigues</span>
+        <span data-pt="Feito com HTML, CSS e JS" data-en="Built with HTML, CSS &amp; JS">Built with HTML, CSS &amp; JS</span>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
