@@ -586,7 +586,157 @@ body.light-mode .btn-primary {
 }
 
 /* ===========================================
-   15. RESPONSIVENESS
+   15. PROJECT DETAILS PAGE (App Store Style)
+   =========================================== */
+.project-page {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.app-hero-section {
+    padding: var(--space-3xl) var(--space-xl) var(--space-xl);
+}
+
+.app-hero-inner {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.app-icon-wrapper {
+    flex-shrink: 0;
+}
+
+.app-icon-large {
+    width: 140px;
+    height: 140px;
+    border-radius: 22.5%; /* Squircle App Store nativo na web */
+    object-fit: cover;
+    background-color: var(--color-surface);
+    box-shadow: var(--shadow-lg), inset 0 0 0 1px var(--color-glass-border);
+}
+
+.app-header-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.app-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: 0;
+    color: var(--color-heading);
+}
+
+.app-tagline {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-muted);
+    font-weight: 400;
+    margin-bottom: var(--space-sm);
+    line-height: 1.4;
+}
+
+.app-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: var(--font-size-sm);
+    color: var(--color-text);
+}
+
+.app-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 600;
+}
+
+.star-icon {
+    width: 14px;
+    height: 14px;
+    color: #fbbf24;
+    fill: #fbbf24;
+}
+
+.app-dev {
+    color: var(--color-accent);
+}
+
+.app-screenshots-section {
+    padding: var(--space-xl) 0;
+    margin: 0 var(--space-xl);
+}
+
+.screenshots-scroll {
+    display: flex;
+    overflow-x: auto;
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+    padding-right: var(--space-xl);
+    scroll-snap-type: x mandatory;
+    /* Custom thin scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-glass-border) transparent;
+}
+
+.screenshots-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+.screenshots-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-glass-border);
+    border-radius: var(--radius-full);
+}
+
+.screenshot-img {
+    height: 480px;
+    width: auto;
+    border-radius: var(--radius-xl);
+    object-fit: contain;
+    box-shadow: var(--shadow-md), inset 0 0 0 1px var(--color-glass-border);
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    /* Adicionando fallback visual pro caso do svg ser vazado */
+    background-color: var(--color-surface);
+}
+
+.app-details-section {
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+    /* Glassmorphism panel for smooth text reading against fog */
+    background: var(--color-surface-2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--color-glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    margin: var(--space-xl);
+}
+
+.detail-block h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--color-heading);
+}
+
+.detail-block p {
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    color: var(--color-text);
+}
+
+.detail-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-border);
+}
+
+/* ===========================================
+   16. RESPONSIVENESS
    =========================================== */
 @media (max-width: 768px) {
     .hero-inner {
@@ -611,5 +761,34 @@ body.light-mode .btn-primary {
         flex-direction: column;
         gap: var(--space-md);
         text-align: center;
+    }
+
+    /* Project Page App Hero Mobile Stack */
+    .app-hero-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .app-icon-large {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .app-meta {
+        justify-content: center;
+    }
+
+    .screenshot-img {
+        height: 380px; /* Screenshots menores em telas compactas */
+    }
+    
+    .app-screenshots-section {
+        margin: 0;
+        padding-left: var(--space-md);
+    }
+    
+    .app-details-section {
+        margin: var(--space-sm);
+        padding: var(--space-xl);
     }
 }
