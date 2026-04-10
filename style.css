@@ -161,9 +161,29 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
     transition: all var(--transition-fast);
 }
 
-.nav-icon-link:hover {
-    color: var(--color-heading);
-    background-color: var(--color-surface-2);
+/* LinkedIn icon color */
+.nav-icon-link[aria-label*="LinkedIn"] {
+    color: #0077b5;
+}
+.nav-icon-link[aria-label*="LinkedIn"]:hover {
+    color: #00a0dc;
+    background-color: rgba(0, 119, 181, 0.15);
+}
+
+/* GitHub icon color */
+.nav-icon-link[aria-label*="GitHub"] {
+    color: #e2e8f0;
+}
+body.light-mode .nav-icon-link[aria-label*="GitHub"] {
+    color: #1a1a1a;
+}
+.nav-icon-link[aria-label*="GitHub"]:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+body.light-mode .nav-icon-link[aria-label*="GitHub"]:hover {
+    color: #000;
+    background-color: rgba(0, 0, 0, 0.08);
 }
 
 .nav-svg-icon { width: 22px; height: 22px; display: block; }
@@ -178,7 +198,13 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
     display: flex; align-items: center; justify-content: space-between; padding: 0 5px;
     border: 1px solid var(--color-border);
 }
-.slider .lucide { width: 14px; height: 14px; color: var(--color-text-muted); }
+.slider .lucide {
+    position: relative;
+    z-index: 3; /* Faz os ícones aparecerem por cima da bolinha */
+    pointer-events: none;
+}
+.slider .icon-moon { width: 14px; height: 14px; color: #a78bfa; } /* Levemente roxinha */
+.slider .icon-sun { width: 14px; height: 14px; color: #fbbf24; } /* Amarelinho */
 .slider::before {
     content: ""; position: absolute; height: 20px; width: 20px; left: 3px; bottom: 3px;
     background-color: var(--color-heading); border-radius: 50%; transition: transform var(--transition-base); z-index: 2;
@@ -235,10 +261,11 @@ input:checked + .slider::before { transform: translateX(24px); }
 }
 
 .btn-secondary {
-    background-color: var(--color-surface);
+    background-color: transparent;
     color: var(--color-heading);
-    border: 1px solid var(--color-border);
+    border: 2px solid var(--color-heading);
     backdrop-filter: blur(8px);
+    font-weight: 700;
 }
 
 .btn-secondary:hover {
@@ -352,7 +379,10 @@ input:checked + .slider::before { transform: translateX(24px); }
     inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Ajusta o ícone para não ser cortado */
+    padding: var(--space-xl); /* Espaçamento interno em volta do ícone */
+    padding-bottom: 90px; /* Deixa o ícone subir e não colar no texto */
+    background-color: var(--color-surface); /* Fundo sólido elegante atrás do Icon.svg */
     z-index: 1;
     transition: transform var(--transition-slow);
 }
