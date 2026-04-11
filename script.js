@@ -14,26 +14,34 @@ document.addEventListener('DOMContentLoaded', () => {
     // Renderiza os ícones do Lucide
     lucide.createIcons();
 
-    initTheme();
+    if (typeof VANTA !== 'undefined') {
+        initVanta();
+    }
     initLanguage();
     initDropdown();
     initEventDelegation();
 });
 
 /* ===========================================
-   THEME TOGGLE & VANTA.JS
+   VANTA.JS
    =========================================== */
 
-function initVanta(isLight) {
+function initVanta() {
     if (vantaEffect) {
         vantaEffect.destroy();
     }
 
-    // Temática focada no Cyan (0x00ffff) - Light levemente mais escuro
-    const highlightColor = isLight ? 0x008b8b : 0x00ffff; // Teal escuro (Light) / Cyan neon brilhante (Dark)
-    const midtoneColor   = isLight ? 0x00d2d2 : 0x008080; // Ciano denso / Teal médio
-    const lowlightColor  = isLight ? 0x8ce6e6 : 0x003333; // Azul-esverdeado claro / Teal muito escuro
-    const baseColor      = isLight ? 0xd0e8e8 : 0x000508; // Fundo cinza-ciano escurecido (Light) / Preto abissal (Dark)
+    const vantaEl = document.getElementById("vanta-bg");
+    if (!vantaEl) return;
+
+    const customColorStr = vantaEl.getAttribute("data-project-color");
+    const customHighlight = customColorStr ? parseInt(customColorStr, 16) : null;
+
+    // Temática focada no Cyan (0x00ffff) ou na cor customizada do projeto
+    const highlightColor = customHighlight !== null ? customHighlight : 0x00ffff;
+    const midtoneColor   = customHighlight !== null ? customHighlight : 0x008080;
+    const lowlightColor  = 0x003333; // Teal muito escuro
+    const baseColor      = 0x000508; // Preto abissal (Dark)
 
     vantaEffect = VANTA.FOG({
         el: "#vanta-bg",
@@ -52,34 +60,6 @@ function initVanta(isLight) {
     });
 }
 
-function initTheme() {
-    const toggle = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('theme');
-
-    let isLight = false;
-
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-        toggle.checked = true;
-        isLight = true;
-    }
-
-    // Initialize the background effect with the correct theme
-    if (typeof VANTA !== 'undefined') {
-        initVanta(isLight);
-    }
-
-    toggle.addEventListener('change', () => {
-        isLight = toggle.checked;
-        document.body.classList.toggle('light-mode', isLight);
-        localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        
-        // Re-initialize Vanta when theme changes for proper colors
-        if (typeof VANTA !== 'undefined') {
-            initVanta(isLight);
-        }
-    });
-}
 
 /* ===========================================
    LANGUAGE SWITCHER

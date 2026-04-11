@@ -25,14 +25,14 @@
 <body>
 
     <!-- Vanta.js animated background canvas -->
-    <div id="vanta-bg"></div>
+    <div id="vanta-bg" data-project-color="0xE94703"></div>
 
     <!-- ==============================
          HEADER
     =============================== -->
     <header class="site-header">
         <nav>
-            <a href="index.html" class="nav-icon-link" aria-label="Voltar para a Home" style="margin-right: auto; gap: var(--space-xs); font-weight: 500;">
+            <a href="index.html" class="nav-icon-link" aria-label="Voltar para a Home" style="display: flex; align-items: center; margin-right: auto; gap: var(--space-xs); font-weight: 500;">
                 <i data-lucide="arrow-left" style="width: 18px;"></i> <span data-pt="Voltar" data-en="Back">Back</span>
             </a>
 
@@ -51,15 +51,6 @@
             </a>
 
             <span class="nav-divider"></span>
-
-            <!-- Theme Toggle -->
-            <label class="theme-switch" aria-label="Alternar tema claro/escuro">
-                <input type="checkbox" id="theme-toggle">
-                <span class="slider">
-                    <i data-lucide="moon" class="icon-moon"></i>
-                    <i data-lucide="sun" class="icon-sun"></i>
-                </span>
-            </label>
 
             <!-- Language Dropdown -->
             <div class="dropdown" id="lang-dropdown">

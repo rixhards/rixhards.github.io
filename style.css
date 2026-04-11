@@ -174,42 +174,15 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
 .nav-icon-link[aria-label*="GitHub"] {
     color: #e2e8f0;
 }
-body.light-mode .nav-icon-link[aria-label*="GitHub"] {
-    color: #1a1a1a;
-}
 .nav-icon-link[aria-label*="GitHub"]:hover {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.1);
-}
-body.light-mode .nav-icon-link[aria-label*="GitHub"]:hover {
-    color: #000;
-    background-color: rgba(0, 0, 0, 0.08);
 }
 
 .nav-svg-icon { width: 22px; height: 22px; display: block; }
 .nav-divider { width: 1px; height: 18px; background-color: var(--color-bar-border); }
 
-/* Theme Switcher */
-.theme-switch { position: relative; display: inline-block; width: 52px; height: 28px; }
-.theme-switch input { opacity: 0; width: 0; height: 0; position: absolute; }
-.slider {
-    position: absolute; inset: 0; background-color: rgba(255,255,255,0.1); 
-    border-radius: var(--radius-full); transition: var(--transition-base); 
-    display: flex; align-items: center; justify-content: space-between; padding: 0 5px;
-    border: 1px solid var(--color-border);
-}
-.slider .lucide {
-    position: relative;
-    z-index: 3; /* Faz os ícones aparecerem por cima da bolinha */
-    pointer-events: none;
-}
-.slider .icon-moon { width: 14px; height: 14px; color: #a78bfa; } /* Levemente roxinha */
-.slider .icon-sun { width: 14px; height: 14px; color: #fbbf24; } /* Amarelinho */
-.slider::before {
-    content: ""; position: absolute; height: 20px; width: 20px; left: 3px; bottom: 3px;
-    background-color: var(--color-heading); border-radius: 50%; transition: transform var(--transition-base); z-index: 2;
-}
-input:checked + .slider::before { transform: translateX(24px); }
+
 
 /* Dropdown */
 .dropdown { position: relative; display: inline-block; }
@@ -554,38 +527,7 @@ dialog ul a:hover {
     color: var(--color-heading);
 }
 
-/* ===========================================
-   14. LIGHT MODE
-   =========================================== */
-body.light-mode {
-    --color-bg-start:     #f8fafc;
-    --color-surface:      rgba(255, 255, 255, 0.7);
-    --color-surface-2:    rgba(241, 245, 249, 0.6);
-    --color-border:       rgba(0, 0, 0, 0.08);
-    --color-text:         #334155;
-    --color-text-muted:   #64748b;
-    --color-heading:      #0f172a;
-    
-    --color-accent:       #008b8b; /* Teal forte para contrastar em branco */
-    --color-accent-subtle: rgba(0, 139, 139, 0.1);
 
-    --color-bar-bg:       rgba(255, 255, 255, 0.85);
-    --color-bar-border:   rgba(0, 0, 0, 0.05);
-    --color-bar-text:     #475569;
-    --color-glass:        rgba(255, 255, 255, 0.6);
-    --color-glass-border: rgba(0, 0, 0, 0.05);
-
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(0, 139, 139, 0.3);
-}
-
-body.light-mode .project-card-overlay {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
-}
-body.light-mode .btn-primary {
-    color: #ffffff; /* Texto branco no botão primário mesmo no light mode */
-}
 
 /* ===========================================
    15. PROJECT DETAILS PAGE (App Store Style)
