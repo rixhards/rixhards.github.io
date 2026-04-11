@@ -315,6 +315,8 @@ input:checked + .slider::before { transform: translateX(24px); }
     border: 2px solid var(--color-border);
     box-shadow: var(--shadow-md);
     flex-shrink: 0;
+    transform: translateZ(0); /* Força layer para evitar que o Webkit/Safari faça sumir */
+    will-change: transform;
 }
 
 .hero-text {
