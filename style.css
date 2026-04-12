@@ -261,176 +261,353 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
    8. HERO SECTION
    =========================================== */
 .hero-section {
-    padding: var(--space-3xl) var(--space-xl);
+    padding: var(--space-3xl) var(--space-xl) var(--space-xl);
     display: flex;
     justify-content: center;
+    position: relative;
+    min-height: 60vh;
+    align-items: center;
 }
 
 .hero-inner {
-    display: flex;
-    gap: var(--space-3xl);
-    align-items: center;
-    background: var(--color-glass);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--color-glass-border);
-    padding: var(--space-2xl);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-md);
-    width: 100%;
+    max-width: 800px;
+    z-index: 2;
 }
 
-.hero-photo {
-    width: 200px;
-    height: 285px;  /* Altura maior definida pelo usuário (step 555 tentou 285px antes de resetar) */
-    border-radius: var(--radius-xl);
-    object-fit: cover;
-    border: 2px solid var(--color-border);
-    box-shadow: var(--shadow-md);
-    flex-shrink: 0;
-    transform: translateZ(0); /* Força layer para evitar que o Webkit/Safari faça sumir */
-    will-change: transform;
+.text-center {
+    text-align: center;
 }
 
-.hero-text {
-    flex: 1;
-}
-
-.hero-text h1 {
+.hero-greeting {
     font-size: var(--font-size-3xl);
+    font-weight: 700;
     margin-bottom: var(--space-xs);
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
 }
 
-.hero-text h2 {
-    font-size: var(--font-size-xl);
+.hero-greeting .highlight {
+    color: #ff3333;
+    background: linear-gradient(90deg, #ff4d4d, #f9cb28);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.wave {
+    display: inline-block;
+    animation: wave-animation 2.5s infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes wave-animation {
+    0% { transform: rotate( 0.0deg) }
+    10% { transform: rotate(14.0deg) }  
+    20% { transform: rotate(-8.0deg) }
+    30% { transform: rotate(14.0deg) }
+    40% { transform: rotate(-4.0deg) }
+    50% { transform: rotate(10.0deg) }
+    60% { transform: rotate( 0.0deg) }  
+    100% { transform: rotate( 0.0deg) }
+}
+
+.hero-role {
+    font-size: calc(var(--font-size-3xl) * 1.2);
     color: var(--color-accent);
     margin-bottom: var(--space-md);
-    font-weight: 500;
+    font-weight: 700;
+    letter-spacing: -2px;
 }
 
-.hero-text p {
+.hero-desc {
     font-size: var(--font-size-lg);
     color: var(--color-text-muted);
-    max-width: 600px;
-    margin-bottom: var(--space-xl);
+    max-width: 650px;
+    margin: 0 auto var(--space-xl);
+    line-height: 1.7;
 }
 
 .hero-actions {
     display: flex;
     gap: var(--space-md);
+    justify-content: center;
 }
 
 /* ===========================================
-   9. PROJECTS GRID
+   8.5. ABOUT SECTION
    =========================================== */
-.projects-section {
-    padding: var(--space-xl);
-}
-
-.projects-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--space-lg);
-}
-
-.project-card {
-    position: relative;
-    flex: 1 1 300px;
-    max-width: 340px;
-    height: 260px;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--color-glass-border);
-    box-shadow: var(--shadow-md);
-    transition: all var(--transition-base);
-    display: flex;
-    align-items: flex-end;
-}
-
-.project-card-bg {
-    position: absolute;
-    inset: 0;
+.about-section, .projects-section, .skills-section {
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: var(--max-width);
+    margin: 0 auto;
     width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ajusta o ícone para não ser cortado */
-    padding: var(--space-xl); /* Espaçamento interno em volta do ícone */
-    padding-bottom: 90px; /* Deixa o ícone subir e não colar no texto */
-    background-color: var(--color-surface); /* Fundo sólido elegante atrás do Icon.svg */
-    z-index: 1;
+}
+
+.section-header {
+    margin-bottom: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    color: #ff4d4d;
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-accent);
+    margin: var(--space-sm) auto;
+    border-radius: var(--radius-full);
+}
+
+.section-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    max-width: 500px;
+    margin-top: calc(var(--space-sm) * -1);
+}
+
+.about-inner {
+    display: flex;
+    gap: var(--space-xl);
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-photo-wrapper {
+    flex-shrink: 0;
+}
+
+.about-photo-ring {
+    padding: 6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff4d4d, transparent, transparent);
+    box-shadow: 0 0 40px rgba(255, 77, 77, 0.2);
+    display: inline-block;
+    transition: all var(--transition-slow);
+}
+
+.about-photo-ring:hover {
+    box-shadow: 0 0 60px rgba(255, 77, 77, 0.6);
+    background: linear-gradient(135deg, #ff4d4d, var(--color-accent));
+}
+
+.about-photo {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.5s ease;
+    border: 4px solid var(--color-bg-start);
+    transform: translateZ(0); 
+}
+
+.about-photo-ring:hover .about-photo {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.02);
+}
+
+.about-text {
+    flex: 1;
+    padding: var(--space-xl);
+    border-radius: var(--radius-xl);
+}
+
+.about-text h3 {
+    color: var(--color-accent);
+    margin-bottom: var(--space-md);
+    font-size: var(--font-size-lg);
+}
+
+.about-text p {
+    color: var(--color-text);
+    margin-bottom: var(--space-md);
+    line-height: 1.7;
+}
+
+.glass-panel {
+    background: var(--color-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+}
+
+/* ===========================================
+   9. PROJECTS GRID PREMIUM
+   =========================================== */
+.projects-grid-premium {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+}
+
+.project-premium-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+}
+
+.project-premium-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg), 0 0 20px rgba(255,255,255,0.05);
+    border-color: var(--color-accent-subtle);
+}
+
+.project-premium-thumb {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-lg);
+    background-color: #1a1a2e; 
+    position: relative;
+    overflow: hidden;
+}
+
+.project-premium-thumb img {
+    height: 160px;
+    width: auto;
+    object-fit: contain;
+    z-index: 2;
     transition: transform var(--transition-slow);
 }
 
-.project-card:hover {
-    border-color: var(--color-accent);
-    box-shadow: var(--shadow-glow);
-    transform: translateY(-4px);
-    z-index: 2;
+.project-premium-card:hover .project-premium-thumb img {
+    transform: scale(1.1);
 }
 
-.project-card:hover .project-card-bg {
-    transform: scale(1.05); /* Efeito suave de zoom in */
-}
+/* Fundos especificos para as thumbs nos novos cards (removendo bordas das imgs pra fundo fluido) */
+.cerne-bg { background: linear-gradient(135deg, rgba(117, 201, 255, 0.2), #050508); }
+.foodswap-bg { background: linear-gradient(135deg, rgba(217, 101, 25, 0.2), #050508); }
+.untoothable-bg { background: linear-gradient(135deg, rgba(43, 105, 149, 0.2), #050508); }
+.recapsule-bg { background: linear-gradient(135deg, rgba(233, 71, 3, 0.2), #050508); }
+.purrchase-bg { background: linear-gradient(135deg, rgba(248, 238, 218, 0.2), #050508); }
 
-.project-card-overlay {
-    position: relative;
-    z-index: 2;
-    width: 100%;
+.project-premium-content {
+    flex: 1;
     padding: var(--space-lg);
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    border-radius: 0 0 var(--radius-xl) var(--radius-xl);
     display: flex;
     flex-direction: column;
+}
+
+.project-premium-content h3 {
+    font-size: var(--font-size-xl);
+    color: var(--color-heading);
+    margin-bottom: var(--space-xs);
+}
+
+.project-premium-content p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-lg);
+    flex: 1; 
+}
+
+/* Tags de projetos */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
     gap: var(--space-xs);
 }
 
-.project-card-overlay h3 {
-    color: #ffffff;
-    font-size: var(--font-size-xl);
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    margin: 0;
+.tag-pill {
+    padding: 4px 10px;
+    font-size: 0.70rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #cbd5e1;
 }
 
-.project-card-overlay p {
-    color: #cbd5e1;
-    font-size: var(--font-size-sm);
-    margin: 0;
-    line-height: 1.4;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-}
+.tag-swift { background: rgba(240, 81, 56, 0.15); color: #f05138; border-color: rgba(240,81,56,0.3); }
+.tag-swiftui { background: rgba(52, 120, 246, 0.15); color: #3478f6; border-color: rgba(52,120,246,0.3); }
+.tag-framework { background: rgba(52, 199, 89, 0.15); color: #34c759; border-color: rgba(52,199,89,0.3); }
+.tag-game { background: rgba(255, 149, 0, 0.15); color: #ff9500; border-color: rgba(255,149,0,0.3); }
 
 /* ===========================================
-   10. TECH STACK (PILLS)
+   10. SKILLS & EXPERTISE
    =========================================== */
-.tech-stack-section {
-    padding: var(--space-2xl) var(--space-xl);
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-lg);
 }
 
-.tech-pills {
+.skill-category {
+    padding: var(--space-lg);
+    border-top: 4px solid transparent;
+}
+
+.category-lang { border-top-color: #3b82f6; } 
+.category-framework { border-top-color: #22c55e; } 
+.category-arch { border-top-color: #a855f7; } 
+.category-tools { border-top-color: #f59e0b; } 
+
+.category-title {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
     gap: var(--space-sm);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--space-lg);
+    color: var(--color-heading);
 }
 
-.pill {
-    padding: var(--space-xs) var(--space-md);
-    background: var(--color-glass);
-    border: 1px solid var(--color-glass-border);
-    border-radius: var(--radius-full);
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.dot-blue { background-color: #3b82f6; box-shadow: 0 0 8px #3b82f6; }
+.dot-green { background-color: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.dot-purple { background-color: #a855f7; box-shadow: 0 0 8px #a855f7; }
+.dot-yellow { background-color: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+
+.skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.skill-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: var(--font-size-sm);
-    color: var(--color-text); /* Destacado em relação ao texto mutado */
-    font-weight: 500;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    cursor: default;
-    user-select: none;
-    transition: border-color var(--transition-fast);
 }
 
-.pill:hover {
-    border-color: var(--color-text-muted); /* Feedback bem sutil */
+.skill-name {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-text);
+    font-weight: 500;
 }
+
+.badge {
+    padding: 2px 8px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+}
+
+.badge-adv { background-color: #0c4a6e; color: #38bdf8; }
+.badge-int { background-color: #064e3b; color: #34d399; }
+.badge-lrn { background-color: #78350f; color: #fbbf24; }
+
 
 /* ===========================================
    11. CTA BOTTOM
@@ -705,6 +882,26 @@ dialog ul a:hover {
         flex-direction: column;
         gap: var(--space-md);
         text-align: center;
+    }
+
+    /* Index New Layout Mobile */
+    .hero-greeting { font-size: var(--font-size-2xl); }
+    .hero-role { font-size: var(--font-size-xl); }
+    
+    .about-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-photo-wrapper {
+        margin-bottom: var(--space-md);
+    }
+    
+    .projects-grid-premium {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-grid {
+        grid-template-columns: 1fr;
     }
 
     /* Project Page App Hero Mobile Stack */

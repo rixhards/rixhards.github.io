@@ -74,17 +74,13 @@
         
         <!-- HERO SECTION -->
         <section id="hero" class="hero-section">
-            <div class="hero-inner">
-                <img src="imgs/FotoRichard.jpeg" alt="Photo of Richard Rodrigues" class="hero-photo" width="200" height="285" fetchpriority="high" decoding="async">
+            <div class="hero-inner text-center">
                 <div class="hero-text">
-                    <h1>Richard Rodrigues</h1>
-                    <h2 data-pt="Desenvolvedor iOS" data-en="iOS Developer">iOS Developer</h2>
-                    <p data-pt="Meu objetivo é fornecer experiências de alta qualidade e impacto na vida das pessoas. Sou de Porto Alegre - RS, estudando Ciência da Computação na ATITUS Educação." data-en="My goal is to provide high-quality experiences that impact people's lives. I'm from Porto Alegre - RS, studying Computer Science at ATITUS Educação.">My goal is to provide high-quality experiences that impact people's lives. I'm from Porto Alegre - RS, studying Computer Science at ATITUS Educação.</p>
+                    <h1 class="hero-greeting">Hey, I'm <span class="highlight">Richard</span> <span class="wave">👋</span></h1>
+                    <h2 class="hero-role" data-pt="Sou um Desenvolvedor iOS" data-en="I'm an iOS Developer">I'm an iOS Developer</h2>
+                    <p class="hero-desc" data-pt="Construo experiências nativas focadas no ecossistema Apple, misturando design inovador com código performático para gerar o máximo de impacto." data-en="I craft native experiences focused on the Apple ecosystem, blending innovative design with performant code to generate maximum impact.">I craft native experiences focused on the Apple ecosystem, blending innovative design with performant code to generate maximum impact.</p>
                     <div class="hero-actions">
-                        <!--<button class="btn-primary" data-action="open-modal" data-target="modal-curriculo"
-                                data-pt="Sobre" data-en="About">About</button>-->
-                        <button class="btn-secondary" data-action="open-modal" data-target="modal-contato"
-                                data-pt="Contato" data-en="Contact">Contact</button>
+                        <button class="btn-secondary" data-action="open-modal" data-target="modal-contato" data-pt="Entre em Contato" data-en="Get in Touch">Get in Touch</button>
                     </div>
                 </div>
             </div>
@@ -92,70 +88,163 @@
 
         <!-- PROJECTS GRID -->
         <section id="projetos" class="projects-section">
-            <h2 data-pt="Projetos" data-en="Projects" style="text-align: center; margin-bottom: var(--space-2xl); font-size: var(--font-size-2xl);">Projects</h2>
-            <div class="projects-grid">
+            <div class="section-header text-center">
+                <h2 class="section-title" data-pt="Projetos em Destaque" data-en="Featured Projects">Featured Projects</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle" data-pt="Uma seleção de projetos criados para gerar impacto." data-en="A selection of projects crafted to make an impact.">A selection of projects crafted to make an impact.</p>
+            </div>
+            
+            <div class="projects-grid-premium">
                 
-                <a class="project-card" href="cerne.html" aria-label="Project 1">
-                    <img src="imgs/Cerne/Icon.svg" alt="Cerne screenshot" class="project-card-bg" loading="lazy" decoding="async">
-                    <div class="project-card-overlay">
+                <a class="project-premium-card" href="cerne.html" aria-label="Cerne Project">
+                    <div class="project-premium-thumb cerne-bg">
+                        <img src="imgs/Cerne/Icon.svg" alt="Cerne logo" loading="lazy" decoding="async">
+                    </div>
+                    <div class="project-premium-content glass-panel">
                         <h3>Cerne</h3>
-                        <p data-pt="Seu impacto no mundo, na palma de suas mãos" data-en="Your impact on the world, in the palm of your hands">Your impact on the world, in the palm of your hands</p>
+                        <p data-pt="Seu impacto no mundo, na palma de suas mãos. Uma aplicação baseada em métricas para acompanhamento solidário." data-en="Your impact on the world, in the palm of your hands. A metrics-based application for solidarity tracking.">Your impact on the world, in the palm of your hands. A metrics-based application for solidarity tracking.</p>
+                        <div class="project-tags">
+                            <span class="tag-pill tag-swift">Swift</span>
+                            <span class="tag-pill tag-swiftui">SwiftUI</span>
+                            <span class="tag-pill tag-framework">CoreData</span>
+                            <span class="tag-pill tag-framework">Combine</span>
+                        </div>
                     </div>
                 </a>
 
-                <a class="project-card" href="foodswap.html" aria-label="Project 2">
-                    <img src="imgs/Food Swap/Icon.svg" alt="Food Swap screenshot" class="project-card-bg" loading="lazy" decoding="async">
-                    <div class="project-card-overlay">
+                <a class="project-premium-card" href="foodswap.html" aria-label="Food Swap Project">
+                    <div class="project-premium-thumb foodswap-bg">
+                        <img src="imgs/Food Swap/Icon.svg" alt="Food Swap logo" loading="lazy" decoding="async">
+                    </div>
+                    <div class="project-premium-content glass-panel">
                         <h3>Food Swap</h3>
-                        <p data-pt="A escolha certa sem stress, aproveite mais os momentos" data-en="The right choice without stress, enjoy the moments more">The right choice without stress, enjoy the moments more</p>
+                        <p data-pt="A escolha certa sem stress. App engajante para simplificar o match de preferências alimentares." data-en="The right choice without stress. Engaging app to simplify the match of food preferences.">The right choice without stress. Engaging app to simplify the match of food preferences.</p>
+                        <div class="project-tags">
+                            <span class="tag-pill tag-swift">Swift</span>
+                            <span class="tag-pill tag-swiftui">SwiftUI</span>
+                        </div>
                     </div>
                 </a>
 
-                <a class="project-card" href="untoothable.html" aria-label="Project 3">
-                    <img src="imgs/Untoothable/Icon.svg" alt="Untoothable screenshot" class="project-card-bg" loading="lazy" decoding="async">
-                    <div class="project-card-overlay">
+                <a class="project-premium-card" href="untoothable.html" aria-label="Untoothable Project">
+                    <div class="project-premium-thumb untoothable-bg">
+                        <img src="imgs/Untoothable/Icon.svg" alt="Untoothable logo" loading="lazy" decoding="async">
+                    </div>
+                    <div class="project-premium-content glass-panel">
                         <h3>Untoothable</h3>
-                        <p data-pt="Fuja da fada malvada e escape dos inimigos" data-en="Escape the evil fairy and avoid enemies">Escape the evil fairy and avoid enemies</p>
+                        <p data-pt="Fuja da fada malvada. Um jogo nativo estilo endless-runner focado em reflexos, partículas visuais fluidas e progressão contínua." data-en="Escape the evil fairy. A native endless-runner style game focused on reflexes, fluid visual particles and continuous progression.">Escape the evil fairy. A native endless-runner style game focused on reflexes, fluid visual particles and continuous progression.</p>
+                        <div class="project-tags">
+                            <span class="tag-pill tag-swift">Swift</span>
+                            <span class="tag-pill tag-game">SpriteKit</span>
+                        </div>
                     </div>
                 </a>
 
-                <a class="project-card" href="recapsule.html" aria-label="Project 4">
-                    <img src="imgs/Recapsule/Icon.svg" alt="Recapsule screenshot" class="project-card-bg" loading="lazy" decoding="async">
-                    <div class="project-card-overlay">
+                <a class="project-premium-card" href="recapsule.html" aria-label="Recapsule Project">
+                    <div class="project-premium-thumb recapsule-bg">
+                        <img src="imgs/Recapsule/Icon.svg" alt="Recapsule logo" loading="lazy" decoding="async">
+                    </div>
+                    <div class="project-premium-content glass-panel">
                         <h3>Recapsule</h3>
-                        <p data-pt="Memórias compartilhadas em uma capsula do tempo" data-en="Shared memories in a time capsule">Shared memories in a time capsule</p>
+                        <p data-pt="Memórias compartilhadas em uma cápsula do tempo interativa e intimista dentro do seu dispositivo iOS." data-en="Shared memories in an interactive and intimate time capsule inside your iOS device.">Shared memories in an interactive and intimate time capsule inside your iOS device.</p>
+                        <div class="project-tags">
+                            <span class="tag-pill tag-swift">Swift</span>
+                            <span class="tag-pill tag-swiftui">SwiftUI</span>
+                        </div>
                     </div>
                 </a>
 
-                <a class="project-card" href="purrchase.html" aria-label="Project 5">
-                    <img src="imgs/Purrchase/Icon.svg" alt="Purrchase screenshot" class="project-card-bg" loading="lazy" decoding="async">
-                    <div class="project-card-overlay">
+                <a class="project-premium-card" href="purrchase.html" aria-label="Purrchase Project">
+                    <div class="project-premium-thumb purrchase-bg">
+                        <img src="imgs/Purrchase/Icon.svg" alt="Purrchase logo" loading="lazy" decoding="async">
+                    </div>
+                    <div class="project-premium-content glass-panel">
                         <h3>Purrchase</h3>
-                        <p data-pt="Sua listinha do mercado nunca foi tão prática!" data-en="Your shopping list has never been so practical!">Your shopping list has never been so practical!</p>
+                        <p data-pt="Sua listinha do mercado super prática. Controle de inventário inteligente para o dia a dia moderno." data-en="Your super practical shopping list. Smart inventory control for modern everyday life.">Your super practical shopping list. Smart inventory control for modern everyday life.</p>
+                        <div class="project-tags">
+                            <span class="tag-pill tag-swift">Swift</span>
+                            <span class="tag-pill tag-framework">UIKit</span>
+                        </div>
                     </div>
                 </a>
 
             </div>
         </section>
 
-        <!-- TECH STACK -->
-        <section id="tech-stack" class="tech-stack-section">
-            <h2 data-pt="Tecnologias" data-en="Technologies" style="text-align: center; margin-bottom: var(--space-xl); font-size: var(--font-size-2xl);">Technologies</h2>
-            <div class="tech-pills">
-                <span class="pill">Swift</span>
-                <span class="pill">SwiftUI</span>
-                <span class="pill">UIKit</span>
-                <span class="pill">CoreData</span>
-                <span class="pill">Combine</span>
-                <span class="pill">SpriteKit</span>
-                <span class="pill">HTML5</span>
-                <span class="pill">CSS3</span>
-                <span class="pill">JavaScript</span>
-                <span class="pill">Git</span>
-                <span class="pill">Figma</span>
-                <span class="pill">Xcode</span>
-                <span class="pill">REST APIs</span>
-                <span class="pill">Unit Testing</span>
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section">
+            
+            <div class="about-inner">
+                <div class="about-photo-wrapper">
+                    <div class="about-photo-ring">
+                        <img src="imgs/FotoRichard.jpeg" alt="Photo of Richard Rodrigues" class="about-photo" width="280" height="280" loading="lazy" decoding="async">
+                    </div>
+                </div>
+                <div class="about-text glass-panel">
+                    <div class="section-header" style="align-items: flex-start; margin-bottom: var(--space-md);">
+                        <h2 class="section-title" data-pt="Sobre Mim" data-en="About Me" style="text-align: left;">About Me</h2>
+                        <div class="title-underline" style="margin: var(--space-sm) 0;"></div>
+                    </div>
+                    <h3 data-pt="Estudante de CC | iOS Experience Creator" data-en="CS Student | iOS Experience Creator">CS Student | iOS Experience Creator</h3>
+                    <p data-pt="Sou apaixonado por tecnologia desde muito cedo. Hoje, estudo Ciência da Computação na ATITUS Educação em Porto Alegre - RS, e focar minha atenção no desenvolvimento móvel tem sido incrível para transformar minhas ideias em aplicações reais na App Store." data-en="I've been passionate about tech since an early age. Today, I'm studying Computer Science at ATITUS Educação in Porto Alegre - RS, and focusing my attention on mobile development has been amazing to turn my ideas into real apps on the App Store.">I've been passionate about tech since an early age. Today, I'm studying Computer Science at ATITUS Educação in Porto Alegre - RS, and focusing my attention on mobile development has been amazing to turn my ideas into real apps on the App Store.</p>
+                    <p data-pt="O que me move é a satisfação de projetar soluções visuais limpas, interfaces empolgantes e arquiteturas robustas em Swift que impactem positivamente a vida das pessoas. Estou sempre focado em elevar a qualidade final de cada frame." data-en="What moves me is the satisfaction of designing clean visual solutions, exciting interfaces, and robust architectures in Swift that positively impact people's lives. I'm always focused on elevating the final quality of every frame.">What moves me is the satisfaction of designing clean visual solutions, exciting interfaces, and robust architectures in Swift that positively impact people's lives. I'm always focused on elevating the final quality of every frame.</p>
+                </div>
+            </div>
+        </section>
+
+        
+
+        
+
+        <!-- SKILLS & EXPERTISE -->
+        <section id="tech-stack" class="skills-section">
+            <div class="section-header text-center">
+                <h2 class="section-title" data-pt="Habilidades e Técnicas" data-en="Skills & Expertise">Skills & Expertise</h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle" data-pt="O ferramental que utilizo para trazer ideias à vida no Apple Ecosystem" data-en="The toolkit I use to bring ideas to life in the Apple Ecosystem">The toolkit I use to bring ideas to life in the Apple Ecosystem</p>
+            </div>
+            
+            <div class="skills-grid">
+                
+                <div class="skill-category category-lang glass-panel">
+                    <h3 class="category-title"><span class="dot dot-blue"></span><span data-pt="Linguagens" data-en="Languages">Languages</span></h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-name">Swift</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">JavaScript</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">HTML5 / CSS3</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">Python</span> <span class="badge badge-int">Intermediate</span></li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category category-framework glass-panel">
+                    <h3 class="category-title"><span class="dot dot-green"></span><span data-pt="Ecossistema Apple" data-en="Apple Ecosystem">Apple Ecosystem</span></h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-name">SwiftUI</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">UIKit</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">SpriteKit</span> <span class="badge badge-int">Intermediate</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-category category-arch glass-panel">
+                    <h3 class="category-title"><span class="dot dot-purple"></span><span data-pt="Arquitetura & Dados" data-en="Architecture & Data">Architecture & Data</span></h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-name">CoreData</span> <span class="badge badge-int">Intermediate</span></li>
+                        <li><span class="skill-name">Combine</span> <span class="badge badge-int">Intermediate</span></li>
+                        <li><span class="skill-name">REST APIs</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">Unit Testing</span> <span class="badge badge-int">Intermediate</span></li>
+                    </ul>
+                </div>
+
+                <div class="skill-category category-tools glass-panel">
+                    <h3 class="category-title"><span class="dot dot-yellow"></span><span data-pt="Ferramentas" data-en="Tools">Tools</span></h3>
+                    <ul class="skill-list">
+                        <li><span class="skill-name">Xcode</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">Git</span> <span class="badge badge-adv">Advanced</span></li>
+                        <li><span class="skill-name">Figma</span> <span class="badge badge-int">Intermediate</span></li>
+                        <li><span class="skill-name">Vercel</span> <span class="badge badge-lrn">Learning</span></li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
