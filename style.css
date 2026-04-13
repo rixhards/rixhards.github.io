@@ -234,17 +234,17 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: var(--color-heading);
-    border: 2px solid var(--color-heading);
+    background-color: #ffffff;
+    color: #050508;
+    border: 2px solid #ffffff;
     backdrop-filter: blur(8px);
     font-weight: 700;
 }
 
 .btn-secondary:hover {
-    background-color: var(--color-accent-subtle);
-    border-color: var(--color-accent);
-    color: var(--color-accent);
+    background-color: #e2e8f0;
+    border-color: #e2e8f0;
+    color: #050508;
 }
 
 /* ===========================================
@@ -272,6 +272,7 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
 .hero-inner {
     max-width: 800px;
     z-index: 2;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.8));
 }
 
 .text-center {
