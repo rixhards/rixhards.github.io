@@ -980,3 +980,76 @@ dialog ul a:hover {
         padding: var(--space-xl);
     }
 }
+
+.btn-icon {
+    margin-right: 8px;
+}
+
+/* ===========================================
+   11. CONTACT SECTION REWORK
+   =========================================== */
+.contact-section {
+    padding: var(--space-3xl) var(--space-xl);
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.contact-inner {
+    padding: var(--space-2xl);
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-input {
+    width: 100%;
+    padding: 1.2rem;
+    background: rgba(30, 41, 59, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    color: var(--color-heading);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    transition: all var(--transition-fast);
+}
+
+.form-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: rgba(56, 189, 248, 0.5);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    background: rgba(30, 41, 59, 0.6);
+}
+
+.btn-gradient {
+    align-self: center;
+    margin-top: var(--space-md);
+    padding: 1rem 3rem;
+    font-weight: 700;
+    border-radius: var(--radius-sm);
+    background: #f05138;
+    color: #cbd5e1;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    font-size: var(--font-size-md);
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
+    opacity: 0.95;
+}
