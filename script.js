@@ -53,16 +53,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
             
-            const subject = encodeURIComponent("Contato do Site por " + name);
-            const body = encodeURIComponent("Nome: " + name + "\nE-mail: " + email + "\n\nMensagem:\n" + message);
-            
-            window.location.href = "mailto:richards1305@gmail.com?subject=" + subject + "&body=" + body;
+            submitBtn.innerText = currentLang === 'pt' ? "Enviando..." : "Sending...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const endpointURL = "https://formspree.io/f/xbdqlkkj";
+
+                const response = await fetch(endpointURL, {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert(currentLang === 'pt' ? "Mensagem enviada com sucesso!" : "Message sent successfully!");
+                    contactForm.reset();
+                } else {
+                    alert(currentLang === 'pt' ? "Ocorreu um erro ao enviar. Tente novamente." : "An error occurred. Please try again.");
+                }
+            } catch (error) {
+                alert(currentLang === 'pt' ? "Erro de conexão." : "Connection error.");
+            } finally {
+                submitBtn.innerText = originalBtnText;
+                submitBtn.disabled = false;
+            }
         });
     }
 });

@@ -1038,10 +1038,10 @@ dialog ul a:hover {
     align-self: center;
     margin-top: var(--space-md);
     padding: 1rem 3rem;
-    font-weight: 600;
+    font-weight: 700;
     border-radius: var(--radius-sm);
-    background: linear-gradient(90deg, #8b5cf6, #38bdf8);
-    color: #ffffff;
+    background: #f05138;
+    color: #cbd5e1;
     border: none;
     cursor: pointer;
     transition: all var(--transition-base);
@@ -1050,6 +1050,6 @@ dialog ul a:hover {
 
 .btn-gradient:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+    box-shadow: 0 6px 20px rgba(255, 77, 77, 0.4);
     opacity: 0.95;
 }
