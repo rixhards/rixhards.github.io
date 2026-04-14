@@ -11,6 +11,36 @@
 let vantaEffect = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Evitar cache de scroll (força iniciar no topo)
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
+    // 2. Limpar qualquer tralha de hash na URL sem recarregar a página
+    if (window.location.hash) {
+        history.replaceState(null, null, window.location.pathname + window.location.search);
+    }
+
+    // 3. Interceptar cliques das âncoras locais (ex: #contato) para não sujar a URL, scrollando manual
+    document.querySelectorAll('a[href^="#"], a[href^="index.html#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const urlArgs = this.getAttribute('href').split('#');
+            const page = urlArgs[0];
+            const hash = '#' + urlArgs[1];
+            
+            const isSamePage = !page || (page === 'index.html' && window.location.pathname.endsWith('index.html')) || (page === 'index.html' && window.location.pathname === '/');
+            
+            if (isSamePage) {
+                const target = document.querySelector(hash);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
     // Renderiza os ícones do Lucide
     lucide.createIcons();
 
@@ -20,6 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguage();
     initDropdown();
     initEventDelegation();
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            const subject = encodeURIComponent("Contato do Site por " + name);
+            const body = encodeURIComponent("Nome: " + name + "\nE-mail: " + email + "\n\nMensagem:\n" + message);
+            
+            window.location.href = "mailto:richards1305@gmail.com?subject=" + subject + "&body=" + body;
+        });
+    }
 });
 
 /* ===========================================
@@ -39,9 +84,9 @@ function initVanta() {
 
     // Temática focada no Cyan (0x00ffff) ou na cor customizada do projeto
     const highlightColor = customHighlight !== null ? customHighlight : 0x00ffff;
-    const midtoneColor   = customHighlight !== null ? customHighlight : 0x008080;
-    const lowlightColor  = 0x003333; // Teal muito escuro
-    const baseColor      = 0x000508; // Preto abissal (Dark)
+    const midtoneColor = customHighlight !== null ? customHighlight : 0x008080;
+    const lowlightColor = 0x003333; // Teal muito escuro
+    const baseColor = 0x000508; // Preto abissal (Dark)
 
     vantaEffect = VANTA.FOG({
         el: "#vanta-bg",
@@ -86,15 +131,25 @@ function setLanguage(lang) {
         el.textContent = el.getAttribute(`data-${lang}`);
     });
 
+    const plElements = document.querySelectorAll('[data-pt-placeholder][data-en-placeholder]');
+    plElements.forEach(el => {
+        el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
+    });
+
+
     const currentFlag = document.getElementById('current-flag');
     const currentLangText = document.getElementById('current-lang-text');
 
     if (lang === 'pt') {
-        currentFlag.textContent = '🇧🇷';
+        currentFlag.src = 'https://flagcdn.com/w20/br.png';
+        currentFlag.srcset = 'https://flagcdn.com/w40/br.png 2x';
+        currentFlag.alt = 'BR';
         currentLangText.textContent = 'PT-BR';
         document.documentElement.lang = 'pt-BR';
     } else {
-        currentFlag.textContent = '🇺🇸';
+        currentFlag.src = 'https://flagcdn.com/w20/us.png';
+        currentFlag.srcset = 'https://flagcdn.com/w40/us.png 2x';
+        currentFlag.alt = 'US';
         currentLangText.textContent = 'EN-US';
         document.documentElement.lang = 'en-US';
     }
