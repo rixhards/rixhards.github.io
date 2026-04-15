@@ -574,8 +574,8 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
     color: #cbd5e1;
 }
 
-.tag-swift { background: rgba(240, 81, 56, 0.15); color: #f05138; border-color: rgba(240,81,56,0.3); }
-.tag-swiftui { background: rgba(52, 120, 246, 0.15); color: #3478f6; border-color: rgba(52,120,246,0.3); }
+.tag-proglanguage { background: rgba(240, 81, 56, 0.15); color: #f05138; border-color: rgba(240,81,56,0.3); }
+.tag-swiftver { background: rgba(52, 120, 246, 0.15); color: #4d8bff; border-color: rgba(36, 107, 238, 0.3); }
 .tag-framework { background: rgba(52, 199, 89, 0.15); color: #34c759; border-color: rgba(52,199,89,0.3); }
 .tag-game { background: rgba(255, 149, 0, 0.15); color: #ff9500; border-color: rgba(255,149,0,0.3); }
 
@@ -649,6 +649,8 @@ h1, h2, h3, h4 { color: var(--color-heading); line-height: 1.2; }
 
 .badge-adv { background-color: #0c4a6e; color: #38bdf8; }
 .badge-int { background-color: #064e3b; color: #34d399; }
+.badge-bas { background-color: #484c57; color: #d6e7fc; }
+.badge-bas { background-color: #522c76; color: #cf9dff; }
 .badge-lrn { background-color: #78350f; color: #fbbf24; }
 
 
